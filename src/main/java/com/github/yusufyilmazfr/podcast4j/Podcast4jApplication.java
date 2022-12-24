@@ -3,6 +3,7 @@ package com.github.yusufyilmazfr.podcast4j;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 import com.github.yusufyilmazfr.podcast4j.service.category.Podcast4jCategoryService;
+import com.github.yusufyilmazfr.podcast4j.service.recent.Podcast4jRecentService;
 import com.github.yusufyilmazfr.podcast4j.service.stats.Podcast4jStatsService;
 
 import java.io.IOException;
@@ -21,8 +22,10 @@ public class Podcast4jApplication {
 
         Podcast4jCategoryService categoryService = factory.getCategoryService();
         Podcast4jStatsService statsService = factory.getStatsService();
+        Podcast4jRecentService recentService = factory.getRecentService();
 
         categoryService.getAll().forEach(System.out::println);
         System.out.println("statsService.get() = " + statsService.get());
+        recentService.getSoundBites(1).forEach(System.out::println);
     }
 }
