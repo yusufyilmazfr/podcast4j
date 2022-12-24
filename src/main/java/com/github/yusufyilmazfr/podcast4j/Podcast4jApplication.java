@@ -1,5 +1,6 @@
 package com.github.yusufyilmazfr.podcast4j;
 
+import com.github.yusufyilmazfr.podcast4j.arg.service.recent.NewFeedsArg;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 import com.github.yusufyilmazfr.podcast4j.service.category.Podcast4jCategoryService;
@@ -27,5 +28,12 @@ public class Podcast4jApplication {
         categoryService.getAll().forEach(System.out::println);
         System.out.println("statsService.get() = " + statsService.get());
         recentService.getSoundBites(1).forEach(System.out::println);
+
+        NewFeedsArg newFeedsArg = NewFeedsArg.builder()
+                .max(10)
+                .since(1671903237L)
+                .build();
+
+        recentService.getNewFeeds(newFeedsArg).forEach(System.out::println);
     }
 }

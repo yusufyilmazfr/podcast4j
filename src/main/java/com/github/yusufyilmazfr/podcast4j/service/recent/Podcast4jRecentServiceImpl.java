@@ -1,8 +1,11 @@
 package com.github.yusufyilmazfr.podcast4j.service.recent;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.yusufyilmazfr.podcast4j.arg.service.recent.NewFeedsArg;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
+import com.github.yusufyilmazfr.podcast4j.entity.NewFeed;
 import com.github.yusufyilmazfr.podcast4j.entity.SoundBite;
+import com.github.yusufyilmazfr.podcast4j.response.NewFeedsResponse;
 import com.github.yusufyilmazfr.podcast4j.response.SoundBiteResponse;
 import com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +19,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.BASE_API_V1_URL;
+import static com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil.toQueryParams;
 
 @RequiredArgsConstructor
 public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
@@ -25,6 +29,19 @@ public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
     private final HttpClient httpClient = HttpClient.newBuilder()
                                                     .followRedirects(HttpClient.Redirect.NEVER)
                                                     .build();
+
+    @Override
+    public List<NewFeed> getNewFeeds(NewFeedsArg arg) throws IOException, InterruptedException, URISyntaxException {
+        String queryParams = toQueryParams(arg.toParams());
+        String url = BASE_API_V1_URL + "/recent/newfeeds?" + queryParams;
+
+        HttpRequest request = HttpRequestUtil.with(config)
+                                             .uri(new URI(url))
+                                             .build();
+
+        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(content.body(), NewFeedsResponse.class).getFeeds();
+    }
 
     @Override
     public List<SoundBite> getSoundBites(int max) throws URISyntaxException, IOException, InterruptedException {
