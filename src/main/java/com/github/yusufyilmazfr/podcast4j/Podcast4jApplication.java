@@ -1,10 +1,12 @@
 package com.github.yusufyilmazfr.podcast4j;
 
+import com.github.yusufyilmazfr.podcast4j.arg.service.episode.ByFeedIdArg;
 import com.github.yusufyilmazfr.podcast4j.arg.service.recent.FeedsArg;
 import com.github.yusufyilmazfr.podcast4j.arg.service.recent.NewFeedsArg;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 import com.github.yusufyilmazfr.podcast4j.service.category.Podcast4jCategoryService;
+import com.github.yusufyilmazfr.podcast4j.service.episode.Podcast4jEpisodeService;
 import com.github.yusufyilmazfr.podcast4j.service.recent.Podcast4jRecentService;
 import com.github.yusufyilmazfr.podcast4j.service.stats.Podcast4jStatsService;
 
@@ -53,5 +55,15 @@ public class Podcast4jApplication {
                 .build();
 
         recentService.getFeeds(feedsArg).forEach(System.out::println);
+
+        // episode service - load by feed id
+        Podcast4jEpisodeService episodeService = factory.getEpisodeService();
+
+        ByFeedIdArg byFeedIdArg = ByFeedIdArg
+                .builder()
+                .id(338542)
+                .build();
+
+        episodeService.getEpisodesByFeedId(byFeedIdArg).forEach(System.out::println);
     }
 }
