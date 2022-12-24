@@ -1,10 +1,13 @@
 package com.github.yusufyilmazfr.podcast4j.service.recent;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.yusufyilmazfr.podcast4j.arg.service.recent.FeedsArg;
 import com.github.yusufyilmazfr.podcast4j.arg.service.recent.NewFeedsArg;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
+import com.github.yusufyilmazfr.podcast4j.entity.Feed;
 import com.github.yusufyilmazfr.podcast4j.entity.NewFeed;
 import com.github.yusufyilmazfr.podcast4j.entity.SoundBite;
+import com.github.yusufyilmazfr.podcast4j.response.FeedsResponse;
 import com.github.yusufyilmazfr.podcast4j.response.NewFeedsResponse;
 import com.github.yusufyilmazfr.podcast4j.response.SoundBiteResponse;
 import com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil;
@@ -29,6 +32,20 @@ public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
     private final HttpClient httpClient = HttpClient.newBuilder()
                                                     .followRedirects(HttpClient.Redirect.NEVER)
                                                     .build();
+
+    @Override
+    public List<Feed> getFeeds(FeedsArg arg) throws URISyntaxException, IOException, InterruptedException {
+        String queryParams = toQueryParams(arg.toParams());
+        String url = BASE_API_V1_URL + "/recent/feeds?" + queryParams;
+
+
+        HttpRequest request = HttpRequestUtil.with(config)
+                                             .uri(new URI(url))
+                                             .build();
+
+        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(content.body(), FeedsResponse.class).getFeeds();
+    }
 
     @Override
     public List<NewFeed> getNewFeeds(NewFeedsArg arg) throws IOException, InterruptedException, URISyntaxException {
