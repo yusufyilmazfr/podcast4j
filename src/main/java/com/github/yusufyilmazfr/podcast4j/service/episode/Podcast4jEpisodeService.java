@@ -18,4 +18,6 @@ public interface Podcast4jEpisodeService {
     List<Episode> getEpisodesByFeedURL(ByFeedURLArg arg) throws IOException, InterruptedException, URISyntaxException;
 
     List<Episode> getEpisodesByiTunesId(ByiTunesArg arg) throws IOException, InterruptedException, URISyntaxException;
+
+    List<Episode> getLiveEpisodes(Integer max) throws IOException, InterruptedException, URISyntaxException;
 }

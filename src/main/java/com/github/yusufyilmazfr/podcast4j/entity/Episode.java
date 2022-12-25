@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.net.URL;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -36,4 +37,5 @@ public class Episode {
     private String feedDuplicateOf;
     private URL chaptersUrl;
     private URL transcriptUrl;
+    Map<Long, String> categories;
 }

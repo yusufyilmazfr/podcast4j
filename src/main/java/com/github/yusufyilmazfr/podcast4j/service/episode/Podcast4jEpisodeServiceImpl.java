@@ -83,4 +83,16 @@ public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), EpisodesResponse.class).getEpisodes();
     }
+
+    @Override
+    public List<Episode> getLiveEpisodes(Integer max) throws IOException, InterruptedException, URISyntaxException {
+        String url = BASE_API_V1_URL + "/episodes/live?max=" + max;
+
+        HttpRequest request = HttpRequestUtil.with(config)
+                                             .uri(new URI(url))
+                                             .build();
+
+        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(content.body(), EpisodesResponse.class).getEpisodes();
+    }
 }

@@ -14,8 +14,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class Podcast4jEpisodeServiceImplTests {
 
@@ -98,5 +97,18 @@ public class Podcast4jEpisodeServiceImplTests {
         // Assert
         assertNotNull(episode);
         assertEquals(CODEFICTION_FEED_ID, episode.getFeedId());
+    }
+
+    @Test
+    public void getLiveEpisodes_shouldReturnMatchedEpisodes() throws IOException, URISyntaxException, InterruptedException {
+        // Arrange
+        Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
+
+        // Actual
+        List<Episode> episodes = episodeService.getLiveEpisodes(5);
+
+        // Assert
+        assertNotNull(episodes);
+        assertNotEquals(0, episodes.size());
     }
 }
