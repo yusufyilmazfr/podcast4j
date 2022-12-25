@@ -1,7 +1,9 @@
 package com.github.yusufyilmazfr.podcast4j.service.recent;
 
+import com.github.yusufyilmazfr.podcast4j.arg.service.recent.EpisodesArg;
 import com.github.yusufyilmazfr.podcast4j.arg.service.recent.FeedsArg;
 import com.github.yusufyilmazfr.podcast4j.arg.service.recent.NewFeedsArg;
+import com.github.yusufyilmazfr.podcast4j.entity.Episode;
 import com.github.yusufyilmazfr.podcast4j.entity.Feed;
 import com.github.yusufyilmazfr.podcast4j.entity.NewFeed;
 import com.github.yusufyilmazfr.podcast4j.entity.SoundBite;
@@ -17,4 +19,6 @@ public interface Podcast4jRecentService {
     List<NewFeed> getNewFeeds(NewFeedsArg arg) throws IOException, InterruptedException, URISyntaxException;
 
     List<SoundBite> getSoundBites(int max) throws URISyntaxException, IOException, InterruptedException;
+
+    List<Episode> getEpisodes(EpisodesArg arg) throws URISyntaxException, IOException, InterruptedException;
 }
