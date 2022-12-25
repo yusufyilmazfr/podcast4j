@@ -31,6 +31,8 @@ public class Episode {
     private Long feedItunesId;
     private URL feedImage;
     private Integer feedId;
+    private String feedUrl;
+    private String feedAuthor;
     private String feedTitle;
     private String feedLanguage;
     private Integer feedDead;
