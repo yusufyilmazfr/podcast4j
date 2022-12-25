@@ -6,7 +6,6 @@ import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import static org.junit.Assert.assertNotEquals;
@@ -20,7 +19,7 @@ public class Podcast4jCategoryServiceImplTests {
     }
 
     @Test
-    public void getAll_shouldReturnAllCategory() throws URISyntaxException, IOException, InterruptedException {
+    public void getAll_shouldReturnAllCategory() throws IOException, InterruptedException {
         // Arrange
         Podcast4jCategoryService categoryService = serviceFactory.getCategoryService();
 

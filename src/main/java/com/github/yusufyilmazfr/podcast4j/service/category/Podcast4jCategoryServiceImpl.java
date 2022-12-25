@@ -8,14 +8,13 @@ import com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.BASE_API_V1_URL;
+import static com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil.toURI;
 
 @RequiredArgsConstructor
 public class Podcast4jCategoryServiceImpl implements Podcast4jCategoryService {
@@ -27,9 +26,9 @@ public class Podcast4jCategoryServiceImpl implements Podcast4jCategoryService {
                                                     .build();
 
     @Override
-    public List<Category> getAll() throws URISyntaxException, IOException, InterruptedException {
+    public List<Category> getAll() throws IOException, InterruptedException {
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(BASE_API_V1_URL + "/categories/list"))
+                                             .uri(toURI(BASE_API_V1_URL + "/categories/list"))
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
