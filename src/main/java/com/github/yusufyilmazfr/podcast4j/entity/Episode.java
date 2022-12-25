@@ -39,5 +39,5 @@ public class Episode {
     private String feedDuplicateOf;
     private URL chaptersUrl;
     private URL transcriptUrl;
-    Map<Long, String> categories;
+    private Map<Integer, String> categories;
 }
