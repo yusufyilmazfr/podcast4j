@@ -5,7 +5,6 @@ import com.github.yusufyilmazfr.podcast4j.arg.service.recent.FeedsArg;
 import com.github.yusufyilmazfr.podcast4j.arg.service.recent.NewFeedsArg;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
-import com.github.yusufyilmazfr.podcast4j.service.category.Podcast4jCategoryService;
 import com.github.yusufyilmazfr.podcast4j.service.episode.Podcast4jEpisodeService;
 import com.github.yusufyilmazfr.podcast4j.service.recent.Podcast4jRecentService;
 import com.github.yusufyilmazfr.podcast4j.service.stats.Podcast4jStatsService;
@@ -24,10 +23,6 @@ public class Podcast4jApplication {
 
         // factory
         Podcast4jServiceFactory factory = Podcast4jServiceFactory.with(config);
-
-        // load categories
-        Podcast4jCategoryService categoryService = factory.getCategoryService();
-        categoryService.getAll().forEach(System.out::println);
 
         // show stats
         Podcast4jStatsService statsService = factory.getStatsService();

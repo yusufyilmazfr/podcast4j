@@ -8,6 +8,7 @@ public final class TestConfig {
                      .secret("HQT8wkdbb5KVMGur$$TmYvg#W6Dgph4nvQkyhV#f")
                      .authKey("CJSXRHDXXTFGKK3DYDNB")
                      .userAgent("SuperPodcastPlayer/1.8")
+                     .timeOut(10000)
                      .build();
     }
 }
