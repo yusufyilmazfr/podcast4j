@@ -161,4 +161,12 @@ public class Podcast {
      * An array of categories, where the index is the Category ID and the value is the Category Name.
      */
     private Map<Integer, String> categories;
+    /**
+     * Information for donation/funding the podcast.
+     */
+    private Funding funding;
+    /**
+     * Information for supporting the podcast via one of the "Value for Value" methods.
+     */
+    private Value value;
 }

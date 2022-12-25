@@ -55,6 +55,16 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
     }
 
     @Override
+    public Podcast getPodcastByGUID(String GUID) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequestUtil.with(config)
+                                              .uri(toURI(BASE_API_V1_URL + "/podcasts/byguid?guid=" + GUID))
+                                              .build();
+
+        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(content.body(), PodcastResponse.class).getPodcast();
+    }
+
+    @Override
     public Podcast getPodcastByiTunesID(Long iTunesId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequestUtil.with(config)
                                              .uri(toURI(BASE_API_V1_URL + "/podcasts/byitunesid?id=" + iTunesId))

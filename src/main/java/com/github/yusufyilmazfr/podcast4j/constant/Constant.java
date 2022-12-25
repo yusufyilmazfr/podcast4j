@@ -7,6 +7,7 @@ public final class Constant {
     public static final String DEFAULT_USER_AGENT = "SuperPodcastPlayer/1.8";
 
     public static Integer CODEFICTION_FEED_ID = 53723;
+    public static String CODEFICTION_GUID_ID = "d2e4c26d-0626-5d32-9634-987be192f841";
     public static String CODEFICTION_PODCAST_TITLE = "Codefiction Podcast";
     public static Long CODEFICTION_EPISODE_ID = 2146512028L; // 513 - Fazla mesai yazılımcının kaderi mi?
     public static Long CODEFICTION_iTUNES_ID = 1172391831L;

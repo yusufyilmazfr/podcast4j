@@ -20,6 +20,8 @@ public interface Podcast4jPodcastService {
 
     Podcast getPodcastByFeedURL(String feedURL) throws IOException, InterruptedException;
 
+    Podcast getPodcastByGUID(String GUID) throws IOException, InterruptedException;
+
     Podcast getPodcastByiTunesID(Long iTunesId) throws IOException, InterruptedException;
 
     /**
