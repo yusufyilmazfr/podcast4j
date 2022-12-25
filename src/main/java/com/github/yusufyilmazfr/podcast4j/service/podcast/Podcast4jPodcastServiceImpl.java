@@ -45,4 +45,14 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), PodcastResponse.class).getPodcast();
     }
+
+    @Override
+    public Podcast getPodcastByiTunesID(Long iTunesId) throws URISyntaxException, IOException, InterruptedException {
+        HttpRequest request = HttpRequestUtil.with(config)
+                                             .uri(new URI(BASE_API_V1_URL + "/podcasts/byitunesid?id=" + iTunesId))
+                                             .build();
+
+        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(content.body(), PodcastResponse.class).getPodcast();
+    }
 }

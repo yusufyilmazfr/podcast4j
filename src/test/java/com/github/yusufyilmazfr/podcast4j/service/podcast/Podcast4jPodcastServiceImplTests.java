@@ -47,4 +47,19 @@ public class Podcast4jPodcastServiceImplTests {
         assertEquals(CODEFICTION_FEED_URL, podcast.getUrl().toString());
         assertEquals(CODEFICTION_iTUNES_ID, podcast.getItunesId());
     }
+
+    @Test
+    public void getPodcastByiTunesID_shouldReturnMatchedPodcast() throws URISyntaxException, IOException, InterruptedException {
+        // Arrange
+        Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+        // Actual
+        Podcast podcast = podcastService.getPodcastByiTunesID(CODEFICTION_iTUNES_ID);
+
+        // Assert
+        assertNotNull(podcast);
+        assertEquals(CODEFICTION_PODCAST_TITLE, podcast.getTitle());
+        assertEquals(CODEFICTION_FEED_URL, podcast.getUrl().toString());
+        assertEquals(CODEFICTION_iTUNES_ID, podcast.getItunesId());
+    }
 }

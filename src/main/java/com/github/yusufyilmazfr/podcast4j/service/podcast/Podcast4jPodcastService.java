@@ -15,4 +15,6 @@ public interface Podcast4jPodcastService {
     Podcast getPodcastByFeedId(Integer feedId) throws URISyntaxException, IOException, InterruptedException;
 
     Podcast getPodcastByFeedURL(String feedURL) throws URISyntaxException, IOException, InterruptedException;
+
+    Podcast getPodcastByiTunesID(Long iTunesId) throws URISyntaxException, IOException, InterruptedException;
 }
