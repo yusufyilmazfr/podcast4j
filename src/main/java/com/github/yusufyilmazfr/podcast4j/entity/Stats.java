@@ -8,11 +8,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Stats {
-    private int feedCountTotal;
-    private int episodeCountTotal;
-    private int feedsWithNewEpisodes3days;
-    private int feedsWithNewEpisodes10days;
-    private int feedsWithNewEpisodes30days;
-    private int feedsWithNewEpisodes90days;
-    private int feedsWithValueBlocks;
+    private Integer feedCountTotal;
+    private Integer episodeCountTotal;
+    private Integer feedsWithNewEpisodes3days;
+    private Integer feedsWithNewEpisodes10days;
+    private Integer feedsWithNewEpisodes30days;
+    private Integer feedsWithNewEpisodes90days;
+    private Integer feedsWithValueBlocks;
 }
