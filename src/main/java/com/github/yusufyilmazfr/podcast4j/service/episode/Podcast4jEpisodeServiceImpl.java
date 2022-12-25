@@ -2,6 +2,7 @@ package com.github.yusufyilmazfr.podcast4j.service.episode;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.yusufyilmazfr.podcast4j.arg.service.episode.ByFeedIdArg;
+import com.github.yusufyilmazfr.podcast4j.arg.service.episode.ByFeedURLArg;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.entity.Episode;
 import com.github.yusufyilmazfr.podcast4j.response.EpisodeResponse;
@@ -36,6 +37,19 @@ public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
         HttpRequest request = HttpRequestUtil.with(config)
                                              .uri(new URI(url))
                                              .build();
+
+        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(content.body(), EpisodeResponse.class).getEpisodes();
+    }
+
+    @Override
+    public List<Episode> getEpisodesByFeedURL(ByFeedURLArg arg) throws IOException, InterruptedException, URISyntaxException {
+        String queryParams = toQueryParams(arg.toParams());
+        String url = BASE_API_V1_URL + "/episodes/byfeedurl?" + queryParams;
+
+        HttpRequest request = HttpRequestUtil.with(config)
+                .uri(new URI(url))
+                .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), EpisodeResponse.class).getEpisodes();

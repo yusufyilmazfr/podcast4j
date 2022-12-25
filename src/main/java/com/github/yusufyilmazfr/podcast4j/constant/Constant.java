@@ -7,4 +7,6 @@ public final class Constant {
     public static final int DEFAULT_HTTP_TIMEOUT = 5_000;
     public static final String DEFAULT_USER_AGENT = "SuperPodcastPlayer/1.8";
 
+    public static Integer CODEFICTION_FEED_ID = 53723;
+    public static String CODEFICTION_FEED_URL = "https://feeds.simplecast.com/3Ro7Vrg6";
 }

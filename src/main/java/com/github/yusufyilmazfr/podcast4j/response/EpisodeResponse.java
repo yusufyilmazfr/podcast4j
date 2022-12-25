@@ -12,5 +12,5 @@ import java.util.List;
 public class EpisodeResponse extends BaseResponse {
     @JsonProperty("items")
     private List<Episode> episodes;
-    private Long query;
+    private String query;
 }
