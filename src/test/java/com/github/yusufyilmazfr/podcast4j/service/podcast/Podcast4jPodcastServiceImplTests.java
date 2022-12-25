@@ -1,7 +1,9 @@
 package com.github.yusufyilmazfr.podcast4j.service.podcast;
 
+import com.github.yusufyilmazfr.podcast4j.arg.service.podcast.TrendPodcastsArg;
 import com.github.yusufyilmazfr.podcast4j.constant.TestConfig;
 import com.github.yusufyilmazfr.podcast4j.entity.Podcast;
+import com.github.yusufyilmazfr.podcast4j.entity.TrendPodcast;
 import com.github.yusufyilmazfr.podcast4j.enums.MediumType;
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 import org.junit.Test;
@@ -10,8 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class Podcast4jPodcastServiceImplTests {
     private final Podcast4jServiceFactory serviceFactory;
@@ -74,5 +75,35 @@ public class Podcast4jPodcastServiceImplTests {
 
         // Assert
         assertNotNull(podcasts);
+    }
+
+    @Test
+    public void getTrendPodcasts_shouldReturnMatchedPodcast() throws IOException, InterruptedException {
+        // Arrange
+        Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+        int expectedMaxCount = 5;
+        String expectedLanguage = "en";
+        String expectedCategory = "News";
+        String expectedNotInCategory = "Entertainment";
+
+
+        TrendPodcastsArg arg = TrendPodcastsArg.builder()
+                                               .lang("en")
+                                               .cat("News")
+                                               .notCat("Entertainment")
+                                               .max(5)
+                                               .build();
+
+        // Actual
+
+        List<TrendPodcast> trendPodcasts = podcastService.getTrendPodcasts(arg);
+        TrendPodcast firstTrendPodcast = trendPodcasts.get(0);
+
+        // Assert
+        assertEquals(expectedMaxCount, trendPodcasts.size());
+        assertEquals(expectedLanguage, firstTrendPodcast.getLanguage());
+        assertTrue(firstTrendPodcast.getCategories().containsValue(expectedCategory));
+        assertFalse(firstTrendPodcast.getCategories().containsValue(expectedNotInCategory));
     }
 }

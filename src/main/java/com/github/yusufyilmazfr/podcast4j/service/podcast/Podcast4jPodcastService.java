@@ -1,6 +1,8 @@
 package com.github.yusufyilmazfr.podcast4j.service.podcast;
 
+import com.github.yusufyilmazfr.podcast4j.arg.service.podcast.TrendPodcastsArg;
 import com.github.yusufyilmazfr.podcast4j.entity.Podcast;
+import com.github.yusufyilmazfr.podcast4j.entity.TrendPodcast;
 import com.github.yusufyilmazfr.podcast4j.enums.MediumType;
 
 import java.io.IOException;
@@ -30,4 +32,6 @@ public interface Podcast4jPodcastService {
      */
 
     List<Podcast> getPodcastsByMedium(MediumType mediumType) throws IOException, InterruptedException;
+
+    List<TrendPodcast> getTrendPodcasts(TrendPodcastsArg arg) throws IOException, InterruptedException;
 }
