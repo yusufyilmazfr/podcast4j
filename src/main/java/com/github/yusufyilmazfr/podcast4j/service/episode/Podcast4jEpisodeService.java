@@ -1,9 +1,6 @@
 package com.github.yusufyilmazfr.podcast4j.service.episode;
 
-import com.github.yusufyilmazfr.podcast4j.arg.service.episode.ByFeedIdArg;
-import com.github.yusufyilmazfr.podcast4j.arg.service.episode.ByFeedURLArg;
-import com.github.yusufyilmazfr.podcast4j.arg.service.episode.ByIdArg;
-import com.github.yusufyilmazfr.podcast4j.arg.service.episode.ByiTunesArg;
+import com.github.yusufyilmazfr.podcast4j.arg.service.episode.*;
 import com.github.yusufyilmazfr.podcast4j.entity.Episode;
 
 import java.io.IOException;
@@ -20,4 +17,6 @@ public interface Podcast4jEpisodeService {
     List<Episode> getEpisodesByiTunesId(ByiTunesArg arg) throws IOException, InterruptedException, URISyntaxException;
 
     List<Episode> getLiveEpisodes(Integer max) throws IOException, InterruptedException, URISyntaxException;
+
+    List<Episode> getRandomEpisodes(RandomEpisodesArg arg) throws IOException, InterruptedException, URISyntaxException;
 }

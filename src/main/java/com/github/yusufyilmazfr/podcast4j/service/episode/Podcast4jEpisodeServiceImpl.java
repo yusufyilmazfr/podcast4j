@@ -1,14 +1,12 @@
 package com.github.yusufyilmazfr.podcast4j.service.episode;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.yusufyilmazfr.podcast4j.arg.service.episode.ByFeedIdArg;
-import com.github.yusufyilmazfr.podcast4j.arg.service.episode.ByFeedURLArg;
-import com.github.yusufyilmazfr.podcast4j.arg.service.episode.ByIdArg;
-import com.github.yusufyilmazfr.podcast4j.arg.service.episode.ByiTunesArg;
+import com.github.yusufyilmazfr.podcast4j.arg.service.episode.*;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.entity.Episode;
 import com.github.yusufyilmazfr.podcast4j.response.EpisodeResponse;
 import com.github.yusufyilmazfr.podcast4j.response.EpisodesResponse;
+import com.github.yusufyilmazfr.podcast4j.response.RandomEpisodesResponse;
 import com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil;
 import lombok.RequiredArgsConstructor;
 
@@ -94,5 +92,18 @@ public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), EpisodesResponse.class).getEpisodes();
+    }
+
+    @Override
+    public List<Episode> getRandomEpisodes(RandomEpisodesArg arg) throws IOException, InterruptedException, URISyntaxException {
+        String queryParams = toQueryParams(arg.toParams());
+        String url = BASE_API_V1_URL + "/episodes/random?" + queryParams;
+
+        HttpRequest request = HttpRequestUtil.with(config)
+                                             .uri(new URI(url))
+                                             .build();
+
+        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(content.body(), RandomEpisodesResponse.class).getEpisodes();
     }
 }
