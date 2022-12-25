@@ -8,5 +8,6 @@ public final class Constant {
     public static final String DEFAULT_USER_AGENT = "SuperPodcastPlayer/1.8";
 
     public static Integer CODEFICTION_FEED_ID = 53723;
+    public static Long CODEFICTION_iTUNES_ID = 1172391831L;
     public static String CODEFICTION_FEED_URL = "https://feeds.simplecast.com/3Ro7Vrg6";
 }
