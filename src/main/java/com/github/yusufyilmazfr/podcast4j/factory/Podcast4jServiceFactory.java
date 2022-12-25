@@ -12,6 +12,8 @@ import com.github.yusufyilmazfr.podcast4j.service.recent.Podcast4jRecentService;
 import com.github.yusufyilmazfr.podcast4j.service.recent.Podcast4jRecentServiceImpl;
 import com.github.yusufyilmazfr.podcast4j.service.stats.Podcast4jStatsService;
 import com.github.yusufyilmazfr.podcast4j.service.stats.Podcast4jStatsServiceImpl;
+import com.github.yusufyilmazfr.podcast4j.service.value.Podcast4jValueService;
+import com.github.yusufyilmazfr.podcast4j.service.value.Podcast4jValueServiceImpl;
 
 import java.util.function.Supplier;
 
@@ -21,6 +23,7 @@ public class Podcast4jServiceFactory {
     private static Podcast4jRecentService recentService;
     private static Podcast4jEpisodeService episodeService;
     private static Podcast4jPodcastService podcastService;
+    private static Podcast4jValueService valueService;
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -33,6 +36,7 @@ public class Podcast4jServiceFactory {
         recentService = new Podcast4jRecentServiceImpl(config, objectMapper);
         episodeService = new Podcast4jEpisodeServiceImpl(config, objectMapper);
         podcastService = new Podcast4jPodcastServiceImpl(config, objectMapper);
+        valueService = new Podcast4jValueServiceImpl(config, objectMapper);
         return new Podcast4jServiceFactory();
     }
 
@@ -58,5 +62,9 @@ public class Podcast4jServiceFactory {
 
     public Podcast4jPodcastService getPodcastService() {
         return podcastService;
+    }
+
+    public Podcast4jValueService getValueService() {
+        return valueService;
     }
 }
