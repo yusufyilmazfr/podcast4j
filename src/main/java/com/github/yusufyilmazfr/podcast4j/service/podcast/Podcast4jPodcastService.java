@@ -13,4 +13,6 @@ public interface Podcast4jPodcastService {
      * @return Podcast from the PodcastIndex.
      */
     Podcast getPodcastByFeedId(Integer feedId) throws URISyntaxException, IOException, InterruptedException;
+
+    Podcast getPodcastByFeedURL(String feedURL) throws URISyntaxException, IOException, InterruptedException;
 }
