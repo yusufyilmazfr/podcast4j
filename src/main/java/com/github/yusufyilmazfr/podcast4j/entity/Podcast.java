@@ -155,7 +155,8 @@ public class Podcast {
     /**
      * A CRC32 hash of the image URL with the protocol (http://, https://) removed.
      */
-    private Integer imageUrlHash;
+    private Long imageUrlHash;
+    private Long newestItemPubdate;
     /**
      * An array of categories, where the index is the Category ID and the value is the Category Name.
      */

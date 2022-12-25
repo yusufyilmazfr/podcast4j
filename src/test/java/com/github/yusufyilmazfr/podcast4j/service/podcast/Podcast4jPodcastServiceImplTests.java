@@ -2,10 +2,12 @@ package com.github.yusufyilmazfr.podcast4j.service.podcast;
 
 import com.github.yusufyilmazfr.podcast4j.constant.TestConfig;
 import com.github.yusufyilmazfr.podcast4j.entity.Podcast;
+import com.github.yusufyilmazfr.podcast4j.enums.MediumType;
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.*;
 import static org.junit.Assert.assertEquals;
@@ -60,5 +62,17 @@ public class Podcast4jPodcastServiceImplTests {
         assertEquals(CODEFICTION_PODCAST_TITLE, podcast.getTitle());
         assertEquals(CODEFICTION_FEED_URL, podcast.getUrl().toString());
         assertEquals(CODEFICTION_iTUNES_ID, podcast.getItunesId());
+    }
+
+    @Test
+    public void getPodcastsByMedium_shouldReturnMatchedPodcast() throws IOException, InterruptedException {
+        // Arrange
+        Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+        // Actual
+        List<Podcast> podcasts = podcastService.getPodcastsByMedium(MediumType.MUSIC);
+
+        // Assert
+        assertNotNull(podcasts);
     }
 }

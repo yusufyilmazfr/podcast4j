@@ -3,7 +3,9 @@ package com.github.yusufyilmazfr.podcast4j.service.podcast;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.entity.Podcast;
+import com.github.yusufyilmazfr.podcast4j.enums.MediumType;
 import com.github.yusufyilmazfr.podcast4j.response.PodcastResponse;
+import com.github.yusufyilmazfr.podcast4j.response.PodcastsByMediumResponse;
 import com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil;
 import lombok.RequiredArgsConstructor;
 
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.BASE_API_V1_URL;
 import static com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil.toURI;
@@ -53,5 +56,15 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), PodcastResponse.class).getPodcast();
+    }
+
+    @Override
+    public List<Podcast> getPodcastsByMedium(MediumType mediumType) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequestUtil.with(config)
+                                             .uri(toURI(BASE_API_V1_URL + "/podcasts/bymedium?medium=" + mediumType.getName()))
+                                             .build();
+
+        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(content.body(), PodcastsByMediumResponse.class).getPodcasts();
     }
 }

@@ -1,8 +1,10 @@
 package com.github.yusufyilmazfr.podcast4j.service.podcast;
 
 import com.github.yusufyilmazfr.podcast4j.entity.Podcast;
+import com.github.yusufyilmazfr.podcast4j.enums.MediumType;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface Podcast4jPodcastService {
     /**
@@ -16,4 +18,16 @@ public interface Podcast4jPodcastService {
     Podcast getPodcastByFeedURL(String feedURL) throws IOException, InterruptedException;
 
     Podcast getPodcastByiTunesID(Long iTunesId) throws IOException, InterruptedException;
+
+    /**
+     * This call returns everything we know about the feeds from the PodcastIndex by medium.
+     *
+     * @param mediumType (Required) The medium value to search for.
+     *                   Full list of possible values documented in [medium](<a href="https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#medium">medium</a>) tag spec.
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     */
+
+    List<Podcast> getPodcastsByMedium(MediumType mediumType) throws IOException, InterruptedException;
 }
