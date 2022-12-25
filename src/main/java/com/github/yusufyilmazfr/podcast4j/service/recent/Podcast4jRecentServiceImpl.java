@@ -17,8 +17,6 @@ import com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -26,6 +24,7 @@ import java.util.List;
 
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.BASE_API_V1_URL;
 import static com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil.toQueryParams;
+import static com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil.toURI;
 
 @RequiredArgsConstructor
 public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
@@ -37,13 +36,11 @@ public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
                                                     .build();
 
     @Override
-    public List<Feed> getFeeds(FeedsArg arg) throws URISyntaxException, IOException, InterruptedException {
+    public List<Feed> getFeeds(FeedsArg arg) throws IOException, InterruptedException {
         String queryParams = toQueryParams(arg.toParams());
-        String url = BASE_API_V1_URL + "/recent/feeds?" + queryParams;
-
 
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(url))
+                                             .uri(toURI(BASE_API_V1_URL + "/recent/feeds?" + queryParams))
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -51,12 +48,11 @@ public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
     }
 
     @Override
-    public List<NewFeed> getNewFeeds(NewFeedsArg arg) throws IOException, InterruptedException, URISyntaxException {
+    public List<NewFeed> getNewFeeds(NewFeedsArg arg) throws IOException, InterruptedException {
         String queryParams = toQueryParams(arg.toParams());
-        String url = BASE_API_V1_URL + "/recent/newfeeds?" + queryParams;
 
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(url))
+                                             .uri(toURI(BASE_API_V1_URL + "/recent/newfeeds?" + queryParams))
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -64,9 +60,9 @@ public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
     }
 
     @Override
-    public List<SoundBite> getSoundBites(int max) throws URISyntaxException, IOException, InterruptedException {
+    public List<SoundBite> getSoundBites(int max) throws IOException, InterruptedException {
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(BASE_API_V1_URL + "/recent/soundbites?max=" + max))
+                                             .uri(toURI(BASE_API_V1_URL + "/recent/soundbites?max=" + max))
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -74,12 +70,11 @@ public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
     }
 
     @Override
-    public List<Episode> getEpisodes(EpisodesArg arg) throws URISyntaxException, IOException, InterruptedException {
+    public List<Episode> getEpisodes(EpisodesArg arg) throws IOException, InterruptedException {
         String queryParams = toQueryParams(arg.toParams());
-        String url = BASE_API_V1_URL + "/recent/episodes?" + queryParams;
 
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(url))
+                                             .uri(toURI(BASE_API_V1_URL + "/recent/episodes?" + queryParams))
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());

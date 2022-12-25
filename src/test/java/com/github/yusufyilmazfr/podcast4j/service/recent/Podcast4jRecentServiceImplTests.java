@@ -7,7 +7,6 @@ import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -20,7 +19,7 @@ public class Podcast4jRecentServiceImplTests {
     }
 
     @Test
-    public void getEpisodes_shouldReturnMatchedRecentEpisodes() throws URISyntaxException, IOException, InterruptedException {
+    public void getEpisodes_shouldReturnMatchedRecentEpisodes() throws IOException, InterruptedException {
         // Arrange
         Podcast4jRecentService recentService = serviceFactory.getRecentService();
         String excludedWord = "MP3";
