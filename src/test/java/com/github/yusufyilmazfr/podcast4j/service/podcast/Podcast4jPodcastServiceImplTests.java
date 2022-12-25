@@ -6,7 +6,6 @@ import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.*;
 import static org.junit.Assert.assertEquals;
@@ -20,7 +19,7 @@ public class Podcast4jPodcastServiceImplTests {
     }
 
     @Test
-    public void getPodcastByFeedId_shouldReturnMatchedPodcast() throws URISyntaxException, IOException, InterruptedException {
+    public void getPodcastByFeedId_shouldReturnMatchedPodcast() throws IOException, InterruptedException {
         // Arrange
         Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
 
@@ -34,7 +33,7 @@ public class Podcast4jPodcastServiceImplTests {
     }
 
     @Test
-    public void getPodcastByFeedURL_shouldReturnMatchedPodcast() throws URISyntaxException, IOException, InterruptedException {
+    public void getPodcastByFeedURL_shouldReturnMatchedPodcast() throws IOException, InterruptedException {
         // Arrange
         Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
 
@@ -49,7 +48,7 @@ public class Podcast4jPodcastServiceImplTests {
     }
 
     @Test
-    public void getPodcastByiTunesID_shouldReturnMatchedPodcast() throws URISyntaxException, IOException, InterruptedException {
+    public void getPodcastByiTunesID_shouldReturnMatchedPodcast() throws IOException, InterruptedException {
         // Arrange
         Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
 
