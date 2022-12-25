@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -20,6 +19,7 @@ import java.util.List;
 
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.BASE_API_V1_URL;
 import static com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil.toQueryParams;
+import static com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil.toURI;
 
 @RequiredArgsConstructor
 public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
@@ -31,12 +31,12 @@ public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
                                                     .build();
 
     @Override
-    public Episode getEpisodeById(ByIdArg arg) throws URISyntaxException, IOException, InterruptedException {
+    public Episode getEpisodeById(ByIdArg arg) throws IOException, InterruptedException {
         String queryParams = toQueryParams(arg.toParams());
-        String url = BASE_API_V1_URL + "/episodes/byid?" + queryParams;
+        URI uri = toURI(BASE_API_V1_URL + "/episodes/byid?" + queryParams);
 
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(url))
+                                             .uri(uri)
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -44,12 +44,12 @@ public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
     }
 
     @Override
-    public List<Episode> getEpisodesByFeedId(ByFeedIdArg arg) throws IOException, InterruptedException, URISyntaxException {
+    public List<Episode> getEpisodesByFeedId(ByFeedIdArg arg) throws IOException, InterruptedException {
         String queryParams = toQueryParams(arg.toParams());
-        String url = BASE_API_V1_URL + "/episodes/byfeedid?" + queryParams;
+        URI uri = toURI(BASE_API_V1_URL + "/episodes/byfeedid?" + queryParams);
 
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(url))
+                                             .uri(uri)
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -57,12 +57,12 @@ public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
     }
 
     @Override
-    public List<Episode> getEpisodesByFeedURL(ByFeedURLArg arg) throws IOException, InterruptedException, URISyntaxException {
+    public List<Episode> getEpisodesByFeedURL(ByFeedURLArg arg) throws IOException, InterruptedException {
         String queryParams = toQueryParams(arg.toParams());
-        String url = BASE_API_V1_URL + "/episodes/byfeedurl?" + queryParams;
+        URI uri = toURI(BASE_API_V1_URL + "/episodes/byfeedurl?" + queryParams);
 
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(url))
+                                             .uri(uri)
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -70,12 +70,12 @@ public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
     }
 
     @Override
-    public List<Episode> getEpisodesByiTunesId(ByiTunesArg arg) throws IOException, InterruptedException, URISyntaxException {
+    public List<Episode> getEpisodesByiTunesId(ByiTunesArg arg) throws IOException, InterruptedException {
         String queryParams = toQueryParams(arg.toParams());
-        String url = BASE_API_V1_URL + "/episodes/byitunesid?" + queryParams;
+        URI uri = toURI(BASE_API_V1_URL + "/episodes/byitunesid?" + queryParams);
 
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(url))
+                                             .uri(uri)
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -83,11 +83,11 @@ public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
     }
 
     @Override
-    public List<Episode> getLiveEpisodes(Integer max) throws IOException, InterruptedException, URISyntaxException {
-        String url = BASE_API_V1_URL + "/episodes/live?max=" + max;
+    public List<Episode> getLiveEpisodes(Integer max) throws IOException, InterruptedException {
+        URI uri = toURI(BASE_API_V1_URL + "/episodes/live?max=" + max);
 
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(url))
+                                             .uri(uri)
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -95,12 +95,12 @@ public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
     }
 
     @Override
-    public List<Episode> getRandomEpisodes(RandomEpisodesArg arg) throws IOException, InterruptedException, URISyntaxException {
+    public List<Episode> getRandomEpisodes(RandomEpisodesArg arg) throws IOException, InterruptedException {
         String queryParams = toQueryParams(arg.toParams());
-        String url = BASE_API_V1_URL + "/episodes/random?" + queryParams;
+        URI uri = toURI(BASE_API_V1_URL + "/episodes/random?" + queryParams);
 
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(url))
+                                             .uri(uri)
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());

@@ -7,7 +7,6 @@ import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.*;
@@ -22,7 +21,7 @@ public class Podcast4jEpisodeServiceImplTests {
     }
 
     @Test
-    public void getEpisodesByFeedId_shouldReturnMatchedEpisodes() throws IOException, URISyntaxException, InterruptedException {
+    public void getEpisodesByFeedId_shouldReturnMatchedEpisodes() throws IOException, InterruptedException {
         // Arrange
         Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
 
@@ -41,7 +40,7 @@ public class Podcast4jEpisodeServiceImplTests {
     }
 
     @Test
-    public void getEpisodesByFeedURL_shouldReturnMatchedEpisodes() throws IOException, URISyntaxException, InterruptedException {
+    public void getEpisodesByFeedURL_shouldReturnMatchedEpisodes() throws IOException, InterruptedException {
         // Arrange
         Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
 
@@ -60,7 +59,7 @@ public class Podcast4jEpisodeServiceImplTests {
     }
 
     @Test
-    public void getEpisodesByiTunesId_shouldReturnMatchedEpisodes() throws IOException, URISyntaxException, InterruptedException {
+    public void getEpisodesByiTunesId_shouldReturnMatchedEpisodes() throws IOException, InterruptedException {
         // Arrange
         Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
 
@@ -79,7 +78,7 @@ public class Podcast4jEpisodeServiceImplTests {
     }
 
     @Test
-    public void getEpisodeById_shouldReturnMatchedEpisodes() throws IOException, URISyntaxException, InterruptedException {
+    public void getEpisodeById_shouldReturnMatchedEpisodes() throws IOException, InterruptedException {
         // Arrange
         Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
 
@@ -97,7 +96,7 @@ public class Podcast4jEpisodeServiceImplTests {
     }
 
     @Test
-    public void getLiveEpisodes_shouldReturnMatchedEpisodes() throws IOException, URISyntaxException, InterruptedException {
+    public void getLiveEpisodes_shouldReturnMatchedEpisodes() throws IOException, InterruptedException {
         // Arrange
         Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
 
@@ -110,7 +109,7 @@ public class Podcast4jEpisodeServiceImplTests {
     }
 
     @Test
-    public void getRandomEpisodes_shouldReturnMatchedEpisodes() throws IOException, URISyntaxException, InterruptedException {
+    public void getRandomEpisodes_shouldReturnMatchedEpisodes() throws IOException, InterruptedException {
         // Arrange
         Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
 
