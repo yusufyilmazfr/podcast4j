@@ -2,6 +2,7 @@ package com.github.yusufyilmazfr.podcast4j.service.podcast;
 
 import com.github.yusufyilmazfr.podcast4j.arg.service.podcast.TrendPodcastsArg;
 import com.github.yusufyilmazfr.podcast4j.constant.TestConfig;
+import com.github.yusufyilmazfr.podcast4j.entity.DeadPodcast;
 import com.github.yusufyilmazfr.podcast4j.entity.Podcast;
 import com.github.yusufyilmazfr.podcast4j.entity.TrendPodcast;
 import com.github.yusufyilmazfr.podcast4j.enums.MediumType;
@@ -96,7 +97,6 @@ public class Podcast4jPodcastServiceImplTests {
                                                .build();
 
         // Actual
-
         List<TrendPodcast> trendPodcasts = podcastService.getTrendPodcasts(arg);
         TrendPodcast firstTrendPodcast = trendPodcasts.get(0);
 
@@ -105,5 +105,17 @@ public class Podcast4jPodcastServiceImplTests {
         assertEquals(expectedLanguage, firstTrendPodcast.getLanguage());
         assertTrue(firstTrendPodcast.getCategories().containsValue(expectedCategory));
         assertFalse(firstTrendPodcast.getCategories().containsValue(expectedNotInCategory));
+    }
+
+    @Test
+    public void getDeadPodcasts_shouldReturnMatchedPodcast() throws IOException, InterruptedException {
+        // Arrange
+        Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+        // Actual
+        List<DeadPodcast> deadPodcasts = podcastService.getDeadPodcasts();
+
+        // Assert
+        assertNotNull(deadPodcasts);
     }
 }

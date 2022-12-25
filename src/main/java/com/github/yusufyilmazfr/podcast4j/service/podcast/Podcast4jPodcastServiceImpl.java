@@ -3,9 +3,11 @@ package com.github.yusufyilmazfr.podcast4j.service.podcast;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.yusufyilmazfr.podcast4j.arg.service.podcast.TrendPodcastsArg;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
+import com.github.yusufyilmazfr.podcast4j.entity.DeadPodcast;
 import com.github.yusufyilmazfr.podcast4j.entity.Podcast;
 import com.github.yusufyilmazfr.podcast4j.entity.TrendPodcast;
 import com.github.yusufyilmazfr.podcast4j.enums.MediumType;
+import com.github.yusufyilmazfr.podcast4j.response.DeadPodcastsResponse;
 import com.github.yusufyilmazfr.podcast4j.response.PodcastResponse;
 import com.github.yusufyilmazfr.podcast4j.response.PodcastsByMediumResponse;
 import com.github.yusufyilmazfr.podcast4j.response.TrendPodcastsResponse;
@@ -82,5 +84,15 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), TrendPodcastsResponse.class).getTrendPodcasts();
+    }
+
+    @Override
+    public List<DeadPodcast> getDeadPodcasts() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequestUtil.with(config)
+                                             .uri(toURI(BASE_API_V1_URL + "/podcasts/dead"))
+                                             .build();
+
+        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(content.body(), DeadPodcastsResponse.class).getDeadPodcasts();
     }
 }
