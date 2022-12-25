@@ -2,6 +2,8 @@ package com.github.yusufyilmazfr.podcast4j.util;
 
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
@@ -45,5 +47,13 @@ public final class HttpRequestUtil {
         }
 
         return builder.toString();
+    }
+
+    public static URI toURI(String... args) {
+        try {
+            return new URI(String.join("", args));
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

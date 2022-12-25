@@ -5,7 +5,6 @@ import com.github.yusufyilmazfr.podcast4j.arg.service.recent.NewFeedsArg;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 import com.github.yusufyilmazfr.podcast4j.service.recent.Podcast4jRecentService;
-import com.github.yusufyilmazfr.podcast4j.service.stats.Podcast4jStatsService;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -21,10 +20,6 @@ public class Podcast4jApplication {
 
         // factory
         Podcast4jServiceFactory factory = Podcast4jServiceFactory.with(config);
-
-        // show stats
-        Podcast4jStatsService statsService = factory.getStatsService();
-        System.out.println("statsService.get() = " + statsService.get());
 
         // recent service - sound bites
         Podcast4jRecentService recentService = factory.getRecentService();

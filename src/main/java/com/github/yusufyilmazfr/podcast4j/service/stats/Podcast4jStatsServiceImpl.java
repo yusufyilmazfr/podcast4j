@@ -8,13 +8,12 @@ import com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.BASE_API_V1_URL;
+import static com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil.toURI;
 
 @RequiredArgsConstructor
 public class Podcast4jStatsServiceImpl implements Podcast4jStatsService {
@@ -26,9 +25,9 @@ public class Podcast4jStatsServiceImpl implements Podcast4jStatsService {
                                                     .build();
 
     @Override
-    public Stats get() throws URISyntaxException, IOException, InterruptedException {
+    public Stats get() throws IOException, InterruptedException {
         HttpRequest request = HttpRequestUtil.with(config)
-                                             .uri(new URI(BASE_API_V1_URL + "/stats/current"))
+                                             .uri(toURI(BASE_API_V1_URL + "/stats/current"))
                                              .build();
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
