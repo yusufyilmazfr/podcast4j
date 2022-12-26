@@ -2,6 +2,8 @@ package com.github.yusufyilmazfr.podcast4j.factory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
+import com.github.yusufyilmazfr.podcast4j.service.applereplacement.Podcast4jAppleReplacementService;
+import com.github.yusufyilmazfr.podcast4j.service.applereplacement.Podcast4jAppleReplacementServiceImpl;
 import com.github.yusufyilmazfr.podcast4j.service.category.Podcast4jCategoryService;
 import com.github.yusufyilmazfr.podcast4j.service.category.Podcast4jCategoryServiceImpl;
 import com.github.yusufyilmazfr.podcast4j.service.episode.Podcast4jEpisodeService;
@@ -27,6 +29,7 @@ public class Podcast4jServiceFactory {
     private static Podcast4jPodcastService podcastService;
     private static Podcast4jValueService valueService;
     private static Podcast4jHubService hubService;
+    private static Podcast4jAppleReplacementService appleReplacementService;
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -41,6 +44,7 @@ public class Podcast4jServiceFactory {
         podcastService = new Podcast4jPodcastServiceImpl(config, objectMapper);
         valueService = new Podcast4jValueServiceImpl(config, objectMapper);
         hubService = new Podcast4jHubServiceImpl(config);
+        appleReplacementService = new Podcast4jAppleReplacementServiceImpl(config, objectMapper);
         return new Podcast4jServiceFactory();
     }
 
@@ -74,5 +78,9 @@ public class Podcast4jServiceFactory {
 
     public Podcast4jHubService getHubService() {
         return hubService;
+    }
+
+    public Podcast4jAppleReplacementService getAppleReplacementService() {
+        return appleReplacementService;
     }
 }
