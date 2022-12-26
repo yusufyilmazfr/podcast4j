@@ -6,6 +6,8 @@ import com.github.yusufyilmazfr.podcast4j.service.category.Podcast4jCategoryServ
 import com.github.yusufyilmazfr.podcast4j.service.category.Podcast4jCategoryServiceImpl;
 import com.github.yusufyilmazfr.podcast4j.service.episode.Podcast4jEpisodeService;
 import com.github.yusufyilmazfr.podcast4j.service.episode.Podcast4jEpisodeServiceImpl;
+import com.github.yusufyilmazfr.podcast4j.service.hub.Podcast4jHubService;
+import com.github.yusufyilmazfr.podcast4j.service.hub.Podcast4jHubServiceImpl;
 import com.github.yusufyilmazfr.podcast4j.service.podcast.Podcast4jPodcastService;
 import com.github.yusufyilmazfr.podcast4j.service.podcast.Podcast4jPodcastServiceImpl;
 import com.github.yusufyilmazfr.podcast4j.service.recent.Podcast4jRecentService;
@@ -24,6 +26,7 @@ public class Podcast4jServiceFactory {
     private static Podcast4jEpisodeService episodeService;
     private static Podcast4jPodcastService podcastService;
     private static Podcast4jValueService valueService;
+    private static Podcast4jHubService hubService;
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -37,6 +40,7 @@ public class Podcast4jServiceFactory {
         episodeService = new Podcast4jEpisodeServiceImpl(config, objectMapper);
         podcastService = new Podcast4jPodcastServiceImpl(config, objectMapper);
         valueService = new Podcast4jValueServiceImpl(config, objectMapper);
+        hubService = new Podcast4jHubServiceImpl(config);
         return new Podcast4jServiceFactory();
     }
 
@@ -66,5 +70,9 @@ public class Podcast4jServiceFactory {
 
     public Podcast4jValueService getValueService() {
         return valueService;
+    }
+
+    public Podcast4jHubService getHubService() {
+        return hubService;
     }
 }
