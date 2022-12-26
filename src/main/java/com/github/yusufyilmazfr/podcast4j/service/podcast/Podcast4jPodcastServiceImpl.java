@@ -7,10 +7,7 @@ import com.github.yusufyilmazfr.podcast4j.entity.DeadPodcast;
 import com.github.yusufyilmazfr.podcast4j.entity.Podcast;
 import com.github.yusufyilmazfr.podcast4j.entity.TrendPodcast;
 import com.github.yusufyilmazfr.podcast4j.enums.MediumType;
-import com.github.yusufyilmazfr.podcast4j.response.DeadPodcastsResponse;
-import com.github.yusufyilmazfr.podcast4j.response.PodcastResponse;
-import com.github.yusufyilmazfr.podcast4j.response.PodcastsByMediumResponse;
-import com.github.yusufyilmazfr.podcast4j.response.TrendPodcastsResponse;
+import com.github.yusufyilmazfr.podcast4j.response.*;
 import com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil;
 import lombok.RequiredArgsConstructor;
 
@@ -72,6 +69,16 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), PodcastResponse.class).getPodcast();
+    }
+
+    @Override
+    public List<Podcast> getPodcastsByTag() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequestUtil.with(config)
+                                             .uri(toURI(BASE_API_V1_URL + "/podcasts/bytag?podcast-value"))
+                                             .build();
+
+        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(content.body(), PodcastsByTagResponse.class).getPodcasts();
     }
 
     @Override

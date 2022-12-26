@@ -24,6 +24,8 @@ public interface Podcast4jPodcastService {
 
     Podcast getPodcastByiTunesID(Long iTunesId) throws IOException, InterruptedException;
 
+    List<Podcast> getPodcastsByTag() throws IOException, InterruptedException;
+
     /**
      * This call returns everything we know about the feeds from the PodcastIndex by medium.
      *

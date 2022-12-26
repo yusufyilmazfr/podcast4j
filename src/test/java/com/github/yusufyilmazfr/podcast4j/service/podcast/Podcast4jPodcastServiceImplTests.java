@@ -67,6 +67,7 @@ public class Podcast4jPodcastServiceImplTests {
         assertEquals(CODEFICTION_iTUNES_ID, podcast.getItunesId());
     }
 
+
     @Test
     public void getPodcastByiTunesID_shouldReturnMatchedPodcast() throws IOException, InterruptedException {
         // Arrange
@@ -80,6 +81,23 @@ public class Podcast4jPodcastServiceImplTests {
         assertEquals(CODEFICTION_PODCAST_TITLE, podcast.getTitle());
         assertEquals(CODEFICTION_FEED_URL, podcast.getUrl().toString());
         assertEquals(CODEFICTION_iTUNES_ID, podcast.getItunesId());
+    }
+
+
+    @Test
+    public void getPodcastsByTag_shouldReturnMatchedPodcasts() throws IOException, InterruptedException {
+        // Arrange
+        Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+        // Actual
+        // [TODO] yusufyilmazfr: podcastindex response is not valid.
+        // [TODO] yusufyilmazfr: If there are categories api provides a MAP but if there are no any categories api provides empty array?
+        // [TODO] yusufyilmazfr: Array and MAP are different data type, so json mapper are not able to parse these.
+        List<Podcast> podcasts = podcastService.getPodcastsByTag();
+
+        // Assert
+        assertNotNull(podcasts);
+        assertTrue(podcasts.size() > 0);
     }
 
     @Test
