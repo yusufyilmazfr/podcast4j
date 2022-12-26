@@ -15,6 +15,8 @@ public interface Podcast4jEpisodeService {
 
     List<Episode> getEpisodesByiTunesId(ByiTunesArg arg) throws IOException, InterruptedException;
 
+    Episode getEpisodeByGUID(ByGUIDArg arg) throws IOException, InterruptedException;
+
     List<Episode> getLiveEpisodes(Integer max) throws IOException, InterruptedException;
 
     List<Episode> getRandomEpisodes(RandomEpisodesArg arg) throws IOException, InterruptedException;

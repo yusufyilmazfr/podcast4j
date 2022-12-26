@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.yusufyilmazfr.podcast4j.arg.service.episode.*;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.entity.Episode;
+import com.github.yusufyilmazfr.podcast4j.response.ByGUIDEpisodeResponse;
 import com.github.yusufyilmazfr.podcast4j.response.EpisodeResponse;
 import com.github.yusufyilmazfr.podcast4j.response.EpisodesResponse;
 import com.github.yusufyilmazfr.podcast4j.response.RandomEpisodesResponse;
@@ -80,6 +81,19 @@ public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
 
         HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), EpisodesResponse.class).getEpisodes();
+    }
+
+    @Override
+    public Episode getEpisodeByGUID(ByGUIDArg arg) throws IOException, InterruptedException {
+        String queryParams = toQueryParams(arg.toParams());
+        URI uri = toURI(BASE_API_V1_URL + "/episodes/byguid?" + queryParams);
+
+        HttpRequest request = HttpRequestUtil.with(config)
+                                             .uri(uri)
+                                             .build();
+
+        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(content.body(), ByGUIDEpisodeResponse.class).getEpisode();
     }
 
     @Override

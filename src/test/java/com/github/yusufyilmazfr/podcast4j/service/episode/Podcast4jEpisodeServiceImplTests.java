@@ -78,6 +78,27 @@ public class Podcast4jEpisodeServiceImplTests {
     }
 
     @Test
+    public void getEpisodesByGUID_shouldReturnMatchedEpisode() throws IOException, InterruptedException {
+        // Arrange
+        Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
+        String expectedGUID = "PC2084";
+        Integer expectedFeedId = 920666;
+
+        ByGUIDArg arg = ByGUIDArg.builder()
+                                 .guid(expectedGUID)
+                                 .feedId(expectedFeedId)
+                                 .build();
+
+        // Actual
+        Episode episode = episodeService.getEpisodeByGUID(arg);
+
+        // Assert
+        assertNotNull(episode);
+        assertEquals(expectedGUID, episode.getGuid());
+        assertEquals(expectedFeedId, episode.getFeedId());
+    }
+
+    @Test
     public void getEpisodeById_shouldReturnMatchedEpisodes() throws IOException, InterruptedException {
         // Arrange
         Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
