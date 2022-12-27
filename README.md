@@ -22,19 +22,54 @@ podcast4j is an open source full implemented Java client for <a href="https://po
          alt="GitHub tweet">
 </p>
 
-<hr/>
+<p align="center">
+  <a href="#about">About</a> •
+  <a href="#features">Features</a> •
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#support">Support</a> •
+  <a href="#license">License</a>
+</p>
 
 ## About
 
 The PodcastIndex exists to preserve, protect and extend the open, independent podcasting ecosystem and podcast4j is an API client of podcastindex. You're able to interract with PodcastIndex through podcast4j.
 
+## Features
+
+|                            | 🔰 Status |                           | 🔰 Status |
+| -------------------------- |:---------:| ------------------------- | --------- |
+| **Search**                 |           | **Recent**                |           |
+| Search Podcasts            | ✔️        | Get Recent Episodes       | ✔️        |
+| Search Podcasts by Title   | ✔️        | Get Recent Feeds          | ✔️        |
+| Search Episodes by Person  | ⌛         | Get New Feeds             | ✔️        |
+| Search Music Podcasts      | ⌛         | Get Soundbites            | ✔️        |
+|                            |           |                           |           |
+| **Podcast**                |           | **Episodes**              |           |
+| Get Podcast By Feed ID     | ✔️        | Get Episodes By Feed ID   | ✔️        |
+| Get Podcast By Feed URL    | ✔️        | Get Episodes By Feed URL  | ✔️        |
+| Get Podcast By GUID        | ✔️        | Get Episodes By GUID      | ✔️        |
+| Get Podcasts By TAG        | ✔️        | Get Episode By ID         | ✔️        |
+| Get Podcast By iTunes ID   | ✔️        | Get Episodes By iTunes ID | ✔️        |
+| Get Podcast By Medium      | ✔️        | Get Live Episodes         | ✔️        |
+| Get Trending Podcasts      | ✔️        | Get Random Episodes       | ✔️        |
+| Get Dead Podcasts          | ✔️        |                           |           |
+|                            |           |                           |           |
+| **Apple Replacement**      |           | **Value**                 |           |
+| Search on Apple iTunes     | ✔️        | Get Values By Feed ID     | ✔️        |
+| Lookup on Apple iTunes     | ✔️        | Get Values By Feed URL    | ✔️        |
+|                            |           |                           |           |
+| **Stats**                  |           | **Category**              |           |
+| Get Current Stats          | ✔️        | Get Categories            | ✔️        |
+|                            |           |                           |           |
+| **Hub**                    |           | **Add Service**           | ⌛         |
+| Notify Changes By Feed Id  | ✔️        | ...                       | ⌛         |
+| Notify Changes By Feed URL | ✔️        | ...                       | ⌛         |
+
 ## Getting Started
 
-Before use podcast4j, we have to create an PodcastIndex account and generate secret and auth key on [podcastindex.org](https://podcastindex.org/). You are able to create an account on [podcastindex](https://api.podcastindex.org/)
+Before use podcast4j, you have to create an PodcastIndex account and generate secret and auth key on [podcastindex.org](https://podcastindex.org/). You are able to create an account on [podcastindex](https://api.podcastindex.org/)
 
-
-
-After generating secret and auth key, you're able to create `Podcast4jServiceFactory` instance to accessing podcastindex API end-points. 
+After generating secret and auth key, you're able to create `Podcast4jServiceFactory` instance to accessing podcastindex API end-points.
 
 ```java
 import com.github.yusufyilmazfr.podcast4j.config.Config;
@@ -69,41 +104,6 @@ Podcast4jServiceFactory factory = Podcast4jServiceFactory.with(config);
 ```
 
 <u>*We are using timeOut field in HTTP cals, default time out is 5 seconds.*</u>
-
-
-
-## Features
-
-
-
-|                            | 🔰 Status |                           | 🔰 Status |
-| -------------------------- |:---------:| ------------------------- | --------- |
-| **Search**                 |           | **Recent**                |           |
-| Search Podcasts            | ✔️        | Get Recent Episodes       | ✔️        |
-| Search Podcasts by Title   | ✔️        | Get Recent Feeds          | ✔️        |
-| Search Episodes by Person  | ⌛         | Get New Feeds             | ✔️        |
-| Search Music Podcasts      | ⌛         | Get Soundbites            | ✔️        |
-|                            |           |                           |           |
-| **Podcast**                |           | **Episodes**              |           |
-| Get Podcast By Feed ID     | ✔️        | Get Episodes By Feed ID   | ✔️        |
-| Get Podcast By Feed URL    | ✔️        | Get Episodes By Feed URL  | ✔️        |
-| Get Podcast By GUID        | ✔️        | Get Episodes By GUID      | ✔️        |
-| Get Podcasts By TAG        | ✔️        | Get Episode By ID         | ✔️        |
-| Get Podcast By iTunes ID   | ✔️        | Get Episodes By iTunes ID | ✔️        |
-| Get Podcast By Medium      | ✔️        | Get Live Episodes         | ✔️        |
-| Get Trending Podcasts      | ✔️        | Get Random Episodes       | ✔️        |
-| Get Dead Podcasts          | ✔️        |                           |           |
-|                            |           |                           |           |
-| **Apple Replacement**      |           | **Value**                 |           |
-| Search on Apple iTunes     | ✔️        | Get Values By Feed ID     | ✔️        |
-| Lookup on Apple iTunes     | ✔️        | Get Values By Feed URL    | ✔️        |
-|                            |           |                           |           |
-| **Stats**                  |           | **Category**              |           |
-| Get Current Stats          | ✔️        | Get Categories            | ✔️        |
-|                            |           |                           |           |
-| **Hub**                    |           | **Add Service**           | ⌛         |
-| Notify Changes By Feed Id  | ✔️        | ...                       | ⌛         |
-| Notify Changes By Feed URL | ✔️        | ...                       | ⌛         |
 
 ## Support
 
