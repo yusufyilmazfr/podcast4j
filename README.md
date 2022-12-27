@@ -5,7 +5,7 @@
 ***podcast4j is an open source full implemented Java client for [podcastindex.org](https://podcastindex.org/)***
 
 <p align="center">
-    <a href="https://github.com/yusufyilmazfr/podcast4j/commits/master">
+    <a href="https://github.com/yusufyilmazfr/podcast4j/commits/main">
     <img src="https://img.shields.io/github/last-commit/yusufyilmazfr/podcast4j.svg?style=flat-square&logo=github&logoColor=white"
          alt="GitHub last commit">
     <a href="https://github.com/yusufyilmazfr/podcast4j/issues">
