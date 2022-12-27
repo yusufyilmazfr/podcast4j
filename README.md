@@ -1,8 +1,11 @@
+<h1 align="center">
 <img title="" src="./img/podcast4j.png" alt=" " data-align="center" width="514">
+</h1>
 
 <hr/>
-
-***podcast4j is an open source full implemented Java client for [podcastindex.org](https://podcastindex.org/)***
+<h4 align="center">
+podcast4j is an open source full implemented Java client for <a href="https://podcastindex.org/" target="_blank">podcastindex.org</a>
+</h4>
 
 <p align="center">
     <a href="https://github.com/yusufyilmazfr/podcast4j/commits/main">
