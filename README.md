@@ -84,7 +84,7 @@ Podcast4jServiceFactory factory = Podcast4jServiceFactory.with(config);
 | Search Episodes by Person  | ⌛         | Get New Feeds             | ✔️        |
 | Search Music Podcasts      | ⌛         | Get Soundbites            | ✔️        |
 |                            |           |                           |           |
-| **Podcast**                |           | **Episodes**              | ✔️        |
+| **Podcast**                |           | **Episodes**              |           |
 | Get Podcast By Feed ID     | ✔️        | Get Episodes By Feed ID   | ✔️        |
 | Get Podcast By Feed URL    | ✔️        | Get Episodes By Feed URL  | ✔️        |
 | Get Podcast By GUID        | ✔️        | Get Episodes By GUID      | ✔️        |
