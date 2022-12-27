@@ -70,6 +70,41 @@ Podcast4jServiceFactory factory = Podcast4jServiceFactory.with(config);
 
 <u>*We are using timeOut field in HTTP cals, default time out is 5 seconds.*</u>
 
+
+
+## Features
+
+
+
+|                            | 🔰 Status |                           | 🔰 Status |
+| -------------------------- |:---------:| ------------------------- | --------- |
+| **Search**                 |           | **Recent**                |           |
+| Search Podcasts            | ✔️        | Get Recent Episodes       | ✔️        |
+| Search Podcasts by Title   | ✔️        | Get Recent Feeds          | ✔️        |
+| Search Episodes by Person  | ⌛         | Get New Feeds             | ✔️        |
+| Search Music Podcasts      | ⌛         | Get Soundbites            | ✔️        |
+|                            |           |                           |           |
+| **Podcast**                |           | **Episodes**              | ✔️        |
+| Get Podcast By Feed ID     | ✔️        | Get Episodes By Feed ID   | ✔️        |
+| Get Podcast By Feed URL    | ✔️        | Get Episodes By Feed URL  | ✔️        |
+| Get Podcast By GUID        | ✔️        | Get Episodes By GUID      | ✔️        |
+| Get Podcasts By TAG        | ✔️        | Get Episode By ID         | ✔️        |
+| Get Podcast By iTunes ID   | ✔️        | Get Episodes By iTunes ID | ✔️        |
+| Get Podcast By Medium      | ✔️        | Get Live Episodes         | ✔️        |
+| Get Trending Podcasts      | ✔️        | Get Random Episodes       | ✔️        |
+| Get Dead Podcasts          | ✔️        |                           |           |
+|                            |           |                           |           |
+| **Apple Replacement**      |           | **Value**                 |           |
+| Search on Apple iTunes     | ✔️        | Get Values By Feed ID     | ✔️        |
+| Lookup on Apple iTunes     | ✔️        | Get Values By Feed URL    | ✔️        |
+|                            |           |                           |           |
+| **Stats**                  |           | **Category**              |           |
+| Get Current Stats          | ✔️        | Get Categories            | ✔️        |
+|                            |           |                           |           |
+| **Hub**                    |           | **Add Service**           | ⌛         |
+| Notify Changes By Feed Id  | ✔️        | ...                       | ⌛         |
+| Notify Changes By Feed URL | ✔️        | ...                       | ⌛         |
+
 ## Support
 
 Reach out to me via the [**Github**](https://github.com/yusufyilmazfr) or [**Twitter**](https://twitter.com/yusufyilmazfr)
