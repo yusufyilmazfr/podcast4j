@@ -23,6 +23,12 @@ podcast4j is an open source full implemented Java client for <a href="https://po
 </p>
 
 <p align="center">
+    <a href="https://github.com/sponsors/yusufyilmazfr">
+      <img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86">
+    </a>
+</p>
+
+<p align="center">
   <a href="#about">About</a> •
   <a href="#getting-started">Getting Started</a> •
   <a href="#features">Features</a> •
