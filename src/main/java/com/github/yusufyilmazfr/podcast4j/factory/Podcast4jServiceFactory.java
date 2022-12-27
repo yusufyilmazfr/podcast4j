@@ -14,6 +14,8 @@ import com.github.yusufyilmazfr.podcast4j.service.podcast.Podcast4jPodcastServic
 import com.github.yusufyilmazfr.podcast4j.service.podcast.Podcast4jPodcastServiceImpl;
 import com.github.yusufyilmazfr.podcast4j.service.recent.Podcast4jRecentService;
 import com.github.yusufyilmazfr.podcast4j.service.recent.Podcast4jRecentServiceImpl;
+import com.github.yusufyilmazfr.podcast4j.service.search.Podcast4jSearchService;
+import com.github.yusufyilmazfr.podcast4j.service.search.Podcast4jSearchServiceImpl;
 import com.github.yusufyilmazfr.podcast4j.service.stats.Podcast4jStatsService;
 import com.github.yusufyilmazfr.podcast4j.service.stats.Podcast4jStatsServiceImpl;
 import com.github.yusufyilmazfr.podcast4j.service.value.Podcast4jValueService;
@@ -30,6 +32,7 @@ public class Podcast4jServiceFactory {
     private static Podcast4jValueService valueService;
     private static Podcast4jHubService hubService;
     private static Podcast4jAppleReplacementService appleReplacementService;
+    private static Podcast4jSearchService searchService;
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -45,6 +48,7 @@ public class Podcast4jServiceFactory {
         valueService = new Podcast4jValueServiceImpl(config, objectMapper);
         hubService = new Podcast4jHubServiceImpl(config);
         appleReplacementService = new Podcast4jAppleReplacementServiceImpl(config, objectMapper);
+        searchService = new Podcast4jSearchServiceImpl(config, objectMapper);
         return new Podcast4jServiceFactory();
     }
 
@@ -82,5 +86,9 @@ public class Podcast4jServiceFactory {
 
     public Podcast4jAppleReplacementService getAppleReplacementService() {
         return appleReplacementService;
+    }
+
+    public Podcast4jSearchService getSearchService() {
+        return searchService;
     }
 }
