@@ -1,4 +1,4 @@
-<img title="" src="./img/podcast4j-removebg-preview.png" alt=" " data-align="center" width="514">
+<img title="" src="./img/podcast4j.png" alt=" " data-align="center" width="514">
 
 <hr/>
 
