@@ -41,7 +41,6 @@ import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 
 //..
-//..
 
 Config config = Config.builder()
         .secret("<SECRET_KEY>")
@@ -54,6 +53,11 @@ Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
 There are several required fields such as `secret` and `authKey` but you're able to add another fields such as; `userAgent` and `timeOut` these fields are default values. It is up to developer who uses this client. If you want to use these fields, you can change these codes that are below.
 
 ```java
+import com.github.yusufyilmazfr.podcast4j.config.Config;
+import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
+
+//..
+
 Config config = Config.builder()
         .secret("<SECRET_KEY>")
         .authKey("<AUTH_KEY>")
