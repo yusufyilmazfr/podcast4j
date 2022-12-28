@@ -93,9 +93,8 @@ Before getting started every service are generated from <code>Podcast4jServiceFa
 ### Podcast Service
 ### Episode Service
 ### Category Service
-#### Get Categories: 
 <details>
-  <summary><b>Click Here to See</b></summary>
+  <summary><b>Get Categories: Click Here to See</b></summary>
 
 ```java
 Config config = Config.builder()
