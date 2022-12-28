@@ -431,6 +431,39 @@ List<Category> categories = Podcast4jServiceFactory.with(config)
 ### Recent Service
 ### Apple Replacement Service
 ### Value Service
+
+<details>
+  <summary><b>Get Value By Feed ID: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jValueService valueService = serviceFactory.getValueService();
+
+Value value = valueService.getValueByFeedId(PODCAST_INDEX_FEED_ID_FOR_VALUE); // PODCAST_INDEX_FEED_ID_FOR_VALUE = 920666;
+````
+</details>
+
+<details>
+  <summary><b>Get Value By Feed URL: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jValueService valueService = serviceFactory.getValueService();
+
+Value value = valueService.getValueByFeedURL(PODCAST_INDEX_FEED_URL_FOR_VALUE); // PODCAST_INDEX_FEED_URL_FOR_VALUE = "https://mp3s.nashownotes.com/pc20rss.xml";
+````
+</details>
+
 ### Hub Service
 <details>
   <summary><b>Notify Changes By FEED Id: Click Here to See</b></summary>
@@ -500,34 +533,34 @@ Stats stats = Podcast4jServiceFactory.with(config)
 
 ## Features
 
-|                            | 🔰 Status |                           | 🔰 Status |
-|----------------------------|:---------:| ------------------------- | --------- |
-| **Search**                 |           | **Recent**                |           |
-| Search Podcasts            | ✔️        | Get Recent Episodes       | ✔️        |
-| Search Podcasts by Title   | ✔️        | Get Recent Feeds          | ✔️        |
-| Search Episodes by Person  | ⌛         | Get New Feeds             | ✔️        |
-| Search Music Podcasts      | ⌛         | Get Soundbites            | ✔️        |
-|                            |           |                           |           |
-| **Podcast**                |           | **Episodes**              |           |
-| Get Podcast By Feed ID     | ✔️        | Get Episodes By Feed ID   | ✔️        |
-| Get Podcast By Feed URL    | ✔️        | Get Episodes By Feed URL  | ✔️        |
-| Get Podcast By GUID        | ✔️        | Get Episode By GUID      | ✔️        |
-| Get Podcasts By TAG        | ✔️        | Get Episode By ID         | ✔️        |
+|                            | 🔰 Status |                         | 🔰 Status |
+|----------------------------|:---------:| ----------------------- | --------- |
+| **Search**                 |           | **Recent**              |           |
+| Search Podcasts            | ✔️        | Get Recent Episodes     | ✔️        |
+| Search Podcasts by Title   | ✔️        | Get Recent Feeds        | ✔️        |
+| Search Episodes by Person  | ⌛         | Get New Feeds           | ✔️        |
+| Search Music Podcasts      | ⌛         | Get Soundbites          | ✔️        |
+|                            |           |                         |           |
+| **Podcast**                |           | **Episodes**            |           |
+| Get Podcast By Feed ID     | ✔️        | Get Episodes By Feed ID | ✔️        |
+| Get Podcast By Feed URL    | ✔️        | Get Episodes By Feed URL | ✔️        |
+| Get Podcast By GUID        | ✔️        | Get Episode By GUID     | ✔️        |
+| Get Podcasts By TAG        | ✔️        | Get Episode By ID       | ✔️        |
 | Get Podcast By iTunes ID   | ✔️        | Get Episodes By iTunes ID | ✔️        |
-| Get Podcasts By Medium     | ✔️        | Get Live Episodes         | ✔️        |
-| Get Trending Podcasts      | ✔️        | Get Random Episodes       | ✔️        |
-| Get Dead Podcasts          | ✔️        |                           |           |
-|                            |           |                           |           |
-| **Apple Replacement**      |           | **Value**                 |           |
-| Search on Apple iTunes     | ✔️        | Get Values By Feed ID     | ✔️        |
-| Lookup on Apple iTunes     | ✔️        | Get Values By Feed URL    | ✔️        |
-|                            |           |                           |           |
-| **Stats**                  |           | **Category**              |           |
-| Get Current Stats          | ✔️        | Get Categories            | ✔️        |
-|                            |           |                           |           |
-| **Hub**                    |           | **Add Service**           |          |
-| Notify Changes By Feed Id  | ✔️        | ...                       | ⌛         |
-| Notify Changes By Feed URL | ✔️        | ...                       | ⌛         |
+| Get Podcasts By Medium     | ✔️        | Get Live Episodes       | ✔️        |
+| Get Trending Podcasts      | ✔️        | Get Random Episodes     | ✔️        |
+| Get Dead Podcasts          | ✔️        |                         |           |
+|                            |           |                         |           |
+| **Apple Replacement**      |           | **Value**               |           |
+| Search on Apple iTunes     | ✔️        | Get Value By Feed ID    | ✔️        |
+| Lookup on Apple iTunes     | ✔️        | Get Value By Feed URL   | ✔️        |
+|                            |           |                         |           |
+| **Stats**                  |           | **Category**            |           |
+| Get Current Stats          | ✔️        | Get Categories          | ✔️        |
+|                            |           |                         |           |
+| **Hub**                    |           | **Add Service**         |          |
+| Notify Changes By Feed Id  | ✔️        | ...                     | ⌛         |
+| Notify Changes By Feed URL | ✔️        | ...                     | ⌛         |
 
 ## Support
 
