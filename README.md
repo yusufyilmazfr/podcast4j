@@ -84,7 +84,7 @@ Podcast4jServiceFactory factory = Podcast4jServiceFactory.with(config);
 ## Usages
 
 <p>This section is all about <b>podcast4j</b> client usages with provided services. 
-Before getting started every service are generated from <code>Podcast4jServiceFactory</code>, so we have to create first <code>Podcast4jServiceFactory</code> then create another service that we need.</p>
+Before getting started every service is generated from <code>Podcast4jServiceFactory</code>, so we have to create first <code>Podcast4jServiceFactory</code> then create another service that we need.</p>
 <p><code>Podcast4jServiceFactory</code> provides us services. Example codes point this.</p>
 
 ### Search Service
@@ -126,6 +126,40 @@ List<Category> categories = Podcast4jServiceFactory.with(config)
 ### Apple Replacement Service
 ### Value Service
 ### Hub Service
+<details>
+  <summary><b>Notify Changes By FEED Id: Click Here to See</b></summary>
+
+```java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jHubService hubService = serviceFactory.getHubService();
+
+hubService.notifyByFeedId(CODEFICTION_FEED_ID); // CODEFICTION_FEED_ID = 53723;
+```
+</details>
+<br />
+<details>
+  <summary><b>Notify Changes By FEED URL: Click Here to See</b></summary>
+
+```java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jHubService hubService = serviceFactory.getHubService();
+
+hubService.notifyByFeedURL(CODEFICTION_FEED_URL); // CODEFICTION_FEED_URL = "https://feeds.simplecast.com/3Ro7Vrg6";
+
+```
+</details>
+
+<hr />
 
 ## Features
 
@@ -160,7 +194,7 @@ List<Category> categories = Podcast4jServiceFactory.with(config)
 
 ## Support
 
-Reach out to me via the [**Github**](https://github.com/yusufyilmazfr) or [**Twitter**](https://twitter.com/yusufyilmazfr)
+Reach out to me via the [**GitHub**](https://github.com/yusufyilmazfr) or [**Twitter**](https://twitter.com/yusufyilmazfr)
 
 ## License
 
