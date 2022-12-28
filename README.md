@@ -87,7 +87,47 @@ Podcast4jServiceFactory factory = Podcast4jServiceFactory.with(config);
 Before getting started every service is generated from <code>Podcast4jServiceFactory</code>, so we have to create first <code>Podcast4jServiceFactory</code> then create another service that we need.<code>Podcast4jServiceFactory</code> provides us services. Example codes point this.</p>
 
 ### Search Service
+<details>
+  <summary><b>Search Podcasts: Click Here to See</b></summary>
 
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jSearchService searchService = serviceFactory.getSearchService();
+
+SearchPodcastsByTermArg arg = SearchPodcastsByTermArg.builder()
+                                                     .q(CODEFICTION_PODCAST_TITLE) // CODEFICTION_PODCAST_TITLE = "Codefiction Podcast";
+                                                     .build();
+
+List<Podcast> podcasts = searchService.searchPodcastsByTerm(arg);
+````
+</details>
+
+<details>
+  <summary><b>Search Podcasts by Title: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jSearchService searchService = serviceFactory.getSearchService();
+
+SearchPodcastsByTitleArg arg = SearchPodcastsByTitleArg.builder()
+                                                       .q(CODEFICTION_PODCAST_TITLE) // CODEFICTION_PODCAST_TITLE = "Codefiction Podcast";
+                                                       .similar(Boolean.TRUE)
+                                                       .build();
+
+List<Podcast> podcasts = searchService.searchPodcastsByTitle(arg);
+````
+
+</details>
 
 ### Podcast Service
 ### Episode Service
