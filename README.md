@@ -430,6 +430,40 @@ List<Category> categories = Podcast4jServiceFactory.with(config)
 
 ### Recent Service
 ### Apple Replacement Service
+
+<details>
+  <summary><b>Search on Apple iTunes: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jAppleReplacementService appleReplacementService  = serviceFactory.getAppleReplacementService();
+
+List<AppleReplacementSearch> searches = appleReplacementService.search("batman");
+````
+
+</details>
+
+<details>
+  <summary><b>Lookup on Apple iTunes: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jAppleReplacementService appleReplacementService  = serviceFactory.getAppleReplacementService();
+
+List<AppleReplacementSearch> searches = appleReplacementService.lookup(CODEFICTION_iTUNES_ID, null); // CODEFICTION_iTUNES_ID = 1172391831L;
+````
+</details>
+
 ### Value Service
 
 <details>
@@ -480,6 +514,7 @@ Podcast4jHubService hubService = serviceFactory.getHubService();
 hubService.notifyByFeedId(CODEFICTION_FEED_ID); // CODEFICTION_FEED_ID = 53723;
 ```
 </details>
+
 <details>
   <summary><b>Notify Changes By FEED URL: Click Here to See</b></summary>
 
