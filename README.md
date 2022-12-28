@@ -34,6 +34,7 @@ podcast4j is an open source full implemented Java client for <a href="https://po
   <a href="#usages">Usages</a> •
   <a href="#features">Features</a> •
   <a href="#support">Support</a> •
+  <a href="#keep-in-touch">Keep in Touch</a> •
   <a href="#license">License</a>
 </p>
 
@@ -682,7 +683,17 @@ Stats stats = Podcast4jServiceFactory.with(config)
 
 ## Support
 
-Reach out to me via the [**GitHub**](https://github.com/yusufyilmazfr) or [**Twitter**](https://twitter.com/yusufyilmazfr)
+
+<p>
+    <a href="https://github.com/sponsors/yusufyilmazfr">
+      <img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86">
+    </a>
+</p>
+
+
+## Keep in Touch
+
+Reach out to me via the [**GitHub**](https://github.com/yusufyilmazfr), [**LinkedIn**](https://linkedin.com/in/yusufyilmazfr) or [**Twitter**](https://twitter.com/yusufyilmazfr)
 
 ## License
 
