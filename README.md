@@ -31,6 +31,7 @@ podcast4j is an open source full implemented Java client for <a href="https://po
 <p align="center">
   <a href="#about">About</a> •
   <a href="#getting-started">Getting Started</a> •
+  <a href="#usages">Usages</a> •
   <a href="#features">Features</a> •
   <a href="#support">Support</a> •
   <a href="#license">License</a>
@@ -43,8 +44,6 @@ The PodcastIndex exists to preserve, protect and extend the open, independent po
 ## Getting Started
 
 Before use podcast4j, we have to create an PodcastIndex account and generate secret and auth key on [podcastindex.org](https://podcastindex.org/). You are able to create an account on [podcastindex](https://api.podcastindex.org/)
-
-
 
 After generating secret and auth key, you're able to create `Podcast4jServiceFactory` instance to accessing podcastindex API end-points. 
 
@@ -82,11 +81,54 @@ Podcast4jServiceFactory factory = Podcast4jServiceFactory.with(config);
 
 <u>*We are using timeOut field in HTTP cals, default time out is 5 seconds.*</u>
 
+## Usages
 
+<p>This section is all about <b>podcast4j</b> client usages with provided services. 
+Before getting started every service are generated from <code>Podcast4jServiceFactory</code>, so we have to create first <code>Podcast4jServiceFactory</code> then create another service that we need.</p>
+<p><code>Podcast4jServiceFactory</code> provides us services. Example codes point this.</p>
+
+### Search Service
+
+
+### Podcast Service
+### Episode Service
+### Category Service
+#### Get Categories: 
+<details>
+  <summary><b>Click Here to See</b></summary>
+
+```java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jCategoryService categoryService = serviceFactory.getCategoryService();
+
+List<Category> categories = categoryService.getAll();
+```
+or you're able to use like fluent version. ✨🫶
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+List<Category> categories = Podcast4jServiceFactory.with(config)
+                                                   .getCategoryService()
+                                                   .getAll();
+
+````
+</details>
+
+### Recent Service
+### Apple Replacement Service
+### Value Service
+### Hub Service
 
 ## Features
-
-
 
 |                            | 🔰 Status |                           | 🔰 Status |
 | -------------------------- |:---------:| ------------------------- | --------- |
