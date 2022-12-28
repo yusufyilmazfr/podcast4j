@@ -84,8 +84,7 @@ Podcast4jServiceFactory factory = Podcast4jServiceFactory.with(config);
 ## Usages
 
 <p>This section is all about <b>podcast4j</b> client usages with provided services. 
-Before getting started every service is generated from <code>Podcast4jServiceFactory</code>, so we have to create first <code>Podcast4jServiceFactory</code> then create another service that we need.</p>
-<p><code>Podcast4jServiceFactory</code> provides us services. Example codes point this.</p>
+Before getting started every service is generated from <code>Podcast4jServiceFactory</code>, so we have to create first <code>Podcast4jServiceFactory</code> then create another service that we need.<code>Podcast4jServiceFactory</code> provides us services. Example codes point this.</p>
 
 ### Search Service
 
@@ -156,6 +155,38 @@ Podcast4jHubService hubService = serviceFactory.getHubService();
 hubService.notifyByFeedURL(CODEFICTION_FEED_URL); // CODEFICTION_FEED_URL = "https://feeds.simplecast.com/3Ro7Vrg6";
 
 ```
+</details>
+
+### Stats Service
+<details>
+  <summary><b>Get PodcastIndex Stats: Click Here to See</b></summary>
+
+```java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jStatsService statsService = serviceFactory.getStatsService();
+
+Stats stats = statsService.get();
+```
+
+or you're able to use like fluent version. ✨🫶
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Stats stats = Podcast4jServiceFactory.with(config)
+                                     .getStatsService()
+                                     .get();
+````
+
+
 </details>
 
 <hr />
