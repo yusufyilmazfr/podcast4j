@@ -113,7 +113,7 @@ Podcast4jServiceFactory factory = Podcast4jServiceFactory.with(config);
 | **Stats**                  |           | **Category**              |           |
 | Get Current Stats          | ✔️        | Get Categories            | ✔️        |
 |                            |           |                           |           |
-| **Hub**                    |           | **Add Service**           | ⌛         |
+| **Hub**                    |           | **Add Service**           |          |
 | Notify Changes By Feed Id  | ✔️        | ...                       | ⌛         |
 | Notify Changes By Feed URL | ✔️        | ...                       | ⌛         |
 
