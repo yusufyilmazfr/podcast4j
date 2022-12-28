@@ -141,7 +141,6 @@ Podcast4jHubService hubService = serviceFactory.getHubService();
 hubService.notifyByFeedId(CODEFICTION_FEED_ID); // CODEFICTION_FEED_ID = 53723;
 ```
 </details>
-<br />
 <details>
   <summary><b>Notify Changes By FEED URL: Click Here to See</b></summary>
 
