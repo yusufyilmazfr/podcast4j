@@ -130,6 +130,129 @@ List<Podcast> podcasts = searchService.searchPodcastsByTitle(arg);
 </details>
 
 ### Podcast Service
+
+<details>
+  <summary><b>Get Podcast By Feed ID: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+Podcast podcast = podcastService.getPodcastByFeedId(CODEFICTION_FEED_ID); // CODEFICTION_FEED_ID = 53723;
+````
+</details>
+
+
+<details>
+  <summary><b>Get Podcast By Feed URL: Click Here to See</b></summary>
+
+```java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+Podcast podcast = podcastService.getPodcastByFeedURL(CODEFICTION_FEED_URL); // CODEFICTION_FEED_URL = "https://feeds.simplecast.com/3Ro7Vrg6";
+```
+</details>
+
+<details>
+  <summary><b>Get Podcast By GUID: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+Podcast podcast = podcastService.getPodcastByGUID(CODEFICTION_GUID_ID); // CODEFICTION_GUID_ID = "d2e4c26d-0626-5d32-9634-987be192f841";
+````
+</details>
+
+<details>
+  <summary><b>Get Podcast By iTunes ID: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+Podcast podcast = podcastService.getPodcastByiTunesID(CODEFICTION_iTUNES_ID); // CODEFICTION_iTUNES_ID = 1172391831L;
+````
+</details>
+
+<details>
+  <summary><b>Get Podcasts By Medium: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+List<Podcast> podcasts = podcastService.getPodcastsByMedium(MediumType.MUSIC);
+````
+</details>
+
+<details>
+  <summary><b>Get Trending Podcasts: Click Here to See</b></summary>
+
+```java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+TrendPodcastsArg arg = TrendPodcastsArg.builder()
+                                       .lang("en")
+                                       .cat("News")
+                                       .notCat("Entertainment")
+                                       .max(5)
+                                       .build();
+
+List<TrendPodcast> trendPodcasts = podcastService.getTrendPodcasts(arg);
+```
+</details>
+
+<details>
+  <summary><b>Get Dead Podcasts: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jPodcastService podcastService = serviceFactory.getPodcastService();
+
+List<DeadPodcast> deadPodcasts = podcastService.getDeadPodcasts();
+````
+</details>
+
+
+
 ### Episode Service
 ### Category Service
 <details>
@@ -234,7 +357,7 @@ Stats stats = Podcast4jServiceFactory.with(config)
 ## Features
 
 |                            | 🔰 Status |                           | 🔰 Status |
-| -------------------------- |:---------:| ------------------------- | --------- |
+|----------------------------|:---------:| ------------------------- | --------- |
 | **Search**                 |           | **Recent**                |           |
 | Search Podcasts            | ✔️        | Get Recent Episodes       | ✔️        |
 | Search Podcasts by Title   | ✔️        | Get Recent Feeds          | ✔️        |
@@ -247,7 +370,7 @@ Stats stats = Podcast4jServiceFactory.with(config)
 | Get Podcast By GUID        | ✔️        | Get Episodes By GUID      | ✔️        |
 | Get Podcasts By TAG        | ✔️        | Get Episode By ID         | ✔️        |
 | Get Podcast By iTunes ID   | ✔️        | Get Episodes By iTunes ID | ✔️        |
-| Get Podcast By Medium      | ✔️        | Get Live Episodes         | ✔️        |
+| Get Podcasts By Medium     | ✔️        | Get Live Episodes         | ✔️        |
 | Get Trending Podcasts      | ✔️        | Get Random Episodes       | ✔️        |
 | Get Dead Podcasts          | ✔️        |                           |           |
 |                            |           |                           |           |
