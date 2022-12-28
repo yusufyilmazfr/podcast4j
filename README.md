@@ -429,6 +429,89 @@ List<Category> categories = Podcast4jServiceFactory.with(config)
 </details>
 
 ### Recent Service
+
+<details>
+  <summary><b>Get Recent Episodes: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jRecentService recentService = serviceFactory.getRecentService();
+
+EpisodesArg arg = EpisodesArg.builder()
+                             .max(5)
+                             .excludeString("MP3")
+                             .build();
+ 
+List<Episode> episodes = recentService.getEpisodes(arg);
+````
+
+</details>
+
+<details>
+  <summary><b>Get Recent Feeds: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jRecentService recentService = serviceFactory.getRecentService();
+
+FeedsArg arg = FeedsArg.builder()
+                       .max(1)
+                       .lang("tr")
+                       .cat("technology")
+                       .build();
+
+List<Feed> feeds = recentService.getFeeds(arg);
+````
+
+</details>
+
+<details>
+  <summary><b>Get New Feeds Click Here to See</b></summary>
+
+```java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jRecentService recentService = serviceFactory.getRecentService();
+
+NewFeedsArg arg = NewFeedsArg.builder()
+                             .max(1)
+                             .build();
+
+List<NewFeed> feeds = recentService.getNewFeeds(arg);
+```
+</details>
+
+<details>
+  <summary><b>Get Soundbites: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jRecentService recentService = serviceFactory.getRecentService();
+
+List<SoundBite> soundBites = recentService.getSoundBites(5);
+````
+</details>
+
+
 ### Apple Replacement Service
 
 <details>
