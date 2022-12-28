@@ -251,9 +251,153 @@ List<DeadPodcast> deadPodcasts = podcastService.getDeadPodcasts();
 ````
 </details>
 
-
-
 ### Episode Service
+
+
+<details>
+  <summary><b>Get Episodes By Feed ID: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
+
+ByFeedIdArg arg = ByFeedIdArg.builder()
+                             .id(CODEFICTION_FEED_ID) // CODEFICTION_FEED_ID = 53723;
+                             .max(10)
+                             .build();
+
+List<Episode> episodes = episodeService.getEpisodesByFeedId(arg);
+````
+</details>
+
+<details>
+  <summary><b>Get Episodes By Feed URL: Click Here to See</b></summary>
+ 
+```java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
+
+ByFeedURLArg arg = ByFeedURLArg.builder()
+                               .url(CODEFICTION_FEED_URL) // CODEFICTION_FEED_URL = "https://feeds.simplecast.com/3Ro7Vrg6";
+                               .max(10)
+                               .build();
+
+List<Episode> episodes = episodeService.getEpisodesByFeedURL(arg);
+```
+</details>
+
+<details>
+  <summary><b>Get Episode By GUID: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
+
+ByGUIDArg arg = ByGUIDArg.builder()
+                         .guid("PC2084")
+                         .feedId(920666)
+                         .build();
+
+Episode episode = episodeService.getEpisodeByGUID(arg);
+````
+</details>
+
+<details>
+  <summary><b>Get Episode By ID: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
+
+ByIdArg arg = ByIdArg.builder()
+                     .id(CODEFICTION_EPISODE_ID) // CODEFICTION_EPISODE_ID = 2146512028L; // 513 - Fazla mesai yazılımcının kaderi mi?
+                     .fulltext(Boolean.TRUE)
+                     .build();
+
+// Actual
+Episode episode = episodeService.getEpisodeById(arg);
+````
+</details>
+
+<details>
+  <summary><b>Get Episodes By iTunes ID: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
+
+ByiTunesArg arg = ByiTunesArg.builder()
+                             .id(CODEFICTION_iTUNES_ID) // CODEFICTION_iTUNES_ID = 1172391831L;
+                             .max(10)
+                             .build();
+
+List<Episode> episodes = episodeService.getEpisodesByiTunesId(arg);
+````
+</details>
+
+<details>
+  <summary><b>Get Live Episodes: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
+
+List<Episode> episodes = episodeService.getLiveEpisodes(5);
+````
+</details>
+
+<details>
+  <summary><b>Get Random Episodes: Click Here to See</b></summary>
+
+````java
+Config config = Config.builder()
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
+
+Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
+Podcast4jEpisodeService episodeService = serviceFactory.getEpisodeService();
+
+RandomEpisodesArg arg = RandomEpisodesArg.builder()
+                                         .lang("tr")
+                                         .cat("Technology")
+                                         .max(5)
+                                         .build();
+
+List<Episode> episodes = episodeService.getRandomEpisodes(arg);
+````
+</details>
+
 ### Category Service
 <details>
   <summary><b>Get Categories: Click Here to See</b></summary>
@@ -367,7 +511,7 @@ Stats stats = Podcast4jServiceFactory.with(config)
 | **Podcast**                |           | **Episodes**              |           |
 | Get Podcast By Feed ID     | ✔️        | Get Episodes By Feed ID   | ✔️        |
 | Get Podcast By Feed URL    | ✔️        | Get Episodes By Feed URL  | ✔️        |
-| Get Podcast By GUID        | ✔️        | Get Episodes By GUID      | ✔️        |
+| Get Podcast By GUID        | ✔️        | Get Episode By GUID      | ✔️        |
 | Get Podcasts By TAG        | ✔️        | Get Episode By ID         | ✔️        |
 | Get Podcast By iTunes ID   | ✔️        | Get Episodes By iTunes ID | ✔️        |
 | Get Podcasts By Medium     | ✔️        | Get Live Episodes         | ✔️        |
