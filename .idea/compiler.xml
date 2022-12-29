@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="podcast4j" target="19" />
+      <module name="podcast4j" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
