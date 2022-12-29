@@ -51,16 +51,9 @@ before getting started, you have to define dependency on your `pom.xml` file.
     <dependency>
         <groupId>io.github.yusufyilmazfr</groupId>
         <artifactId>podcast4j</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </dependency>
 </dependencies>
-
-<repositories>
-    <repository>
-        <id>java-net-repo</id>
-        <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-    </repository>
-</repositories>
 ```
 
 Before use podcast4j, we have to create an PodcastIndex account and generate secret and auth key on [podcastindex.org](https://podcastindex.org/). You are able to create an account on [podcastindex](https://api.podcastindex.org/)
