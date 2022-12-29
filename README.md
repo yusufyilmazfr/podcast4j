@@ -44,8 +44,6 @@ The PodcastIndex exists to preserve, protect and extend the open, independent po
 
 ## Getting Started
 
-Before use podcast4j, we have to create an PodcastIndex account and generate secret and auth key on [podcastindex.org](https://podcastindex.org/). You are able to create an account on [podcastindex](https://api.podcastindex.org/)
-
 before getting started, you have to define dependency on your `pom.xml` file.
 
 ```java
@@ -64,6 +62,8 @@ before getting started, you have to define dependency on your `pom.xml` file.
     </repository>
 </repositories>
 ```
+
+Before use podcast4j, we have to create an PodcastIndex account and generate secret and auth key on [podcastindex.org](https://podcastindex.org/). You are able to create an account on [podcastindex](https://api.podcastindex.org/)
 
 After generating secret and auth key, you're able to create `Podcast4jServiceFactory` instance to accessing podcastindex API end-points. 
 
