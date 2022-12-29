@@ -74,9 +74,9 @@ import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 //..
 
 Config config = Config.builder()
-        .secret("<SECRET_KEY>")
-        .authKey("<AUTH_KEY>")
-        .build();
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .build();
 
 Podcast4jServiceFactory serviceFactory = Podcast4jServiceFactory.with(config);
 ```
@@ -90,11 +90,11 @@ import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory;
 //..
 
 Config config = Config.builder()
-        .secret("<SECRET_KEY>")
-        .authKey("<AUTH_KEY>")
-        .userAgent("SuperPodcastPlayer/1.8")
-        .timeOut(10000)
-        .build();
+                      .secret("<SECRET_KEY>")
+                      .authKey("<AUTH_KEY>")
+                      .userAgent("SuperPodcastPlayer/1.8")
+                      .timeOut(10000)
+                      .build();
 
 Podcast4jServiceFactory factory = Podcast4jServiceFactory.with(config);
 ```
