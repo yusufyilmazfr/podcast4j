@@ -1,6 +1,5 @@
 package com.github.yusufyilmazfr.podcast4j.entity;
 
-import com.github.yusufyilmazfr.podcast4j.enums.MediumType;
 import lombok.Getter;
 import lombok.Setter;
 
