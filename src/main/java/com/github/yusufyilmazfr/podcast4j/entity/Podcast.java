@@ -1,5 +1,6 @@
 package com.github.yusufyilmazfr.podcast4j.entity;
 
+import com.github.yusufyilmazfr.podcast4j.enums.MediumType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -170,4 +171,6 @@ public class Podcast {
      * Information for supporting the podcast via one of the "Value for Value" methods.
      */
     private Value value;
+
+    private String medium;
 }
