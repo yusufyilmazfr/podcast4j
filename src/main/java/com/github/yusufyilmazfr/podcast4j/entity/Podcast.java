@@ -170,4 +170,6 @@ public class Podcast {
      * Information for supporting the podcast via one of the "Value for Value" methods.
      */
     private Value value;
+
+    private String medium;
 }
