@@ -172,4 +172,8 @@ public class Podcast {
     private Value value;
 
     private String medium;
+
+    private String inPollingQueue;
+
+    private String priority;
 }
