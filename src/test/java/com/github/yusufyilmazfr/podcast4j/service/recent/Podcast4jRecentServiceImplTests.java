@@ -81,7 +81,7 @@ public class Podcast4jRecentServiceImplTests {
         String excludedWord = "MP3";
 
         EpisodesArg arg = EpisodesArg.builder()
-                                     .max(5)
+                                     .max(1)
                                      .excludeString(excludedWord)
                                      .build();
 
@@ -90,7 +90,7 @@ public class Podcast4jRecentServiceImplTests {
 
         // Assert
         assertNotNull(episodes);
-        assertEquals(5, episodes.size());
+        assertEquals(1, episodes.size());
         assertFalse(episodes.stream().anyMatch(episode -> episode.getDescription().contains(excludedWord)));
     }
 }

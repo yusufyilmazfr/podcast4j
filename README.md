@@ -51,7 +51,7 @@ before getting started, you have to define dependency on your `pom.xml` file.
     <dependency>
         <groupId>io.github.yusufyilmazfr</groupId>
         <artifactId>podcast4j</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </dependency>
 </dependencies>
 ```
