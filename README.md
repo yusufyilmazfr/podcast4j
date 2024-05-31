@@ -46,7 +46,7 @@ The PodcastIndex exists to preserve, protect and extend the open, independent po
 
 before getting started, you have to define dependency on your `pom.xml` file.
 
-```java
+```xml
 <dependencies>
     <dependency>
         <groupId>io.github.yusufyilmazfr</groupId>
