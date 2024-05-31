@@ -1,5 +1,6 @@
 package com.github.yusufyilmazfr.podcast4j.factory;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.service.applereplacement.Podcast4jAppleReplacementService;
@@ -37,6 +38,7 @@ public class Podcast4jServiceFactory {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     private Podcast4jServiceFactory() {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     public static Podcast4jServiceFactory with(Config config) {
