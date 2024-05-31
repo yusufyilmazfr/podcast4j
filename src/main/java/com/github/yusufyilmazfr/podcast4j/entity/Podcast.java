@@ -3,7 +3,6 @@ package com.github.yusufyilmazfr.podcast4j.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.net.URL;
 import java.util.Map;
 
 @Getter
@@ -25,15 +24,15 @@ public class Podcast {
     /**
      * Current feed URL
      */
-    private URL url;
+    private String url;
     /**
      * The URL of the feed, before it changed to the current url value.
      */
-    private URL originalUrl;
+    private String originalUrl;
     /**
      * The channel-level link in the feed
      */
-    private URL link;
+    private String link;
     /**
      * The channel-level description
      * Uses the longest of the possible fields in the feed: <description>, <itunes:summary> and <content:encoded>
@@ -52,11 +51,11 @@ public class Podcast {
     /**
      * The channel-level image element.
      */
-    private URL image;
+    private String image;
     /**
      * Seemingly the best artwork we can find for the feed. Might be the same as image in most instances.
      */
-    private URL artwork;
+    private String artwork;
     /**
      * The channel-level pubDate for the feed, if it’s sane.
      * If not, this is a heuristic value, arrived at by analyzing other parts of the feed, like item-level pubDates.
