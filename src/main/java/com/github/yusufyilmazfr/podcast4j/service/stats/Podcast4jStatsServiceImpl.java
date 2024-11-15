@@ -20,9 +20,19 @@ public class Podcast4jStatsServiceImpl implements Podcast4jStatsService {
     private final Config config;
     private final ObjectMapper objectMapper;
 
-    private final HttpClient httpClient = HttpClient.newBuilder()
-                                                    .followRedirects(HttpClient.Redirect.NEVER)
-                                                    .build();
+    private HttpClient httpClientInstance;
+
+    public HttpClient getHttpClient() {
+        if (httpClientInstance == null) {
+            synchronized (HttpClient.class) {
+                httpClientInstance = HttpClient.newBuilder()
+                        .followRedirects(HttpClient.Redirect.NEVER)
+                        .proxy(config.getProxySelector())
+                        .build();
+            }
+        }
+        return httpClientInstance;
+    }
 
     @Override
     public Stats get() throws IOException, InterruptedException {
@@ -30,7 +40,7 @@ public class Podcast4jStatsServiceImpl implements Podcast4jStatsService {
                                              .uri(toURI(BASE_API_V1_URL + "/stats/current"))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), StatsResponse.class).getStats();
     }
 }

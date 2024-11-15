@@ -24,9 +24,19 @@ public class Podcast4jSearchServiceImpl implements Podcast4jSearchService {
     private final Config config;
     private final ObjectMapper objectMapper;
 
-    private final HttpClient httpClient = HttpClient.newBuilder()
-                                                    .followRedirects(HttpClient.Redirect.NEVER)
-                                                    .build();
+    private HttpClient httpClientInstance;
+
+    public HttpClient getHttpClient() {
+        if (httpClientInstance == null) {
+            synchronized (HttpClient.class) {
+                httpClientInstance = HttpClient.newBuilder()
+                        .followRedirects(HttpClient.Redirect.NEVER)
+                        .proxy(config.getProxySelector())
+                        .build();
+            }
+        }
+        return httpClientInstance;
+    }
 
     @Override
     public List<Podcast> searchPodcastsByTerm(SearchPodcastsByTermArg arg) throws IOException, InterruptedException {
@@ -36,7 +46,7 @@ public class Podcast4jSearchServiceImpl implements Podcast4jSearchService {
                                              .uri(toURI(BASE_API_V1_URL + "/search/byterm?" + queryParams))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), SearchPodcastsResponse.class).getPodcasts();
     }
 
@@ -48,7 +58,7 @@ public class Podcast4jSearchServiceImpl implements Podcast4jSearchService {
                                              .uri(toURI(BASE_API_V1_URL + "/search/bytitle?" + queryParams))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), SearchPodcastsResponse.class).getPodcasts();
 
     }

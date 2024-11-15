@@ -21,9 +21,19 @@ public class Podcast4jAppleReplacementServiceImpl implements Podcast4jAppleRepla
     private final Config config;
     private final ObjectMapper objectMapper;
 
-    private final HttpClient httpClient = HttpClient.newBuilder()
-                                                    .followRedirects(HttpClient.Redirect.ALWAYS)
-                                                    .build();
+    private HttpClient httpClientInstance;
+
+    public HttpClient getHttpClient() {
+        if (httpClientInstance == null) {
+            synchronized (HttpClient.class) {
+                httpClientInstance = HttpClient.newBuilder()
+                        .followRedirects(HttpClient.Redirect.NEVER)
+                        .proxy(config.getProxySelector())
+                        .build();
+            }
+        }
+        return httpClientInstance;
+    }
 
     @Override
     public List<AppleReplacementSearch> search(String term) throws IOException, InterruptedException {
@@ -31,7 +41,7 @@ public class Podcast4jAppleReplacementServiceImpl implements Podcast4jAppleRepla
                                              .uri(toURI(BASE_APP_URL + "/search?term=" + term))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), AppleReplacementSearchResponse.class).getResults();
     }
 
@@ -41,7 +51,7 @@ public class Podcast4jAppleReplacementServiceImpl implements Podcast4jAppleRepla
                                              .uri(toURI(BASE_APP_URL + "/lookup?id=" + iTunesId + "&entity=" + type))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), AppleReplacementSearchResponse.class).getResults();
     }
 }

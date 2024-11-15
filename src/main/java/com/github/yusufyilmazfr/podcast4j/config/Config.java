@@ -3,6 +3,8 @@ package com.github.yusufyilmazfr.podcast4j.config;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.net.ProxySelector;
+
 import static com.github.yusufyilmazfr.podcast4j.constant.Constant.*;
 
 @Getter
@@ -12,6 +14,7 @@ public class Config implements Cloneable {
     private String secret;
     private String userAgent;
     private int timeOut;
+    private ProxySelector proxySelector;
 
     public int getTimeOut() {
         return timeOut == 0 ? DEFAULT_HTTP_TIMEOUT : timeOut;
@@ -21,12 +24,17 @@ public class Config implements Cloneable {
         return userAgent == null ? DEFAULT_USER_AGENT : userAgent;
     }
 
+    public ProxySelector getProxySelector() {
+        return proxySelector;
+    }
+
     public Config clone() {
         return Config.builder()
                      .authKey(authKey)
                      .secret(secret)
                      .userAgent(userAgent)
                      .timeOut(timeOut)
+                     .proxySelector(proxySelector)
                      .build();
     }
 }

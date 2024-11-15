@@ -31,9 +31,19 @@ public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
     private final Config config;
     private final ObjectMapper objectMapper;
 
-    private final HttpClient httpClient = HttpClient.newBuilder()
-                                                    .followRedirects(HttpClient.Redirect.NEVER)
-                                                    .build();
+    private HttpClient httpClientInstance;
+
+    public HttpClient getHttpClient() {
+        if (httpClientInstance == null) {
+            synchronized (HttpClient.class) {
+                httpClientInstance = HttpClient.newBuilder()
+                        .followRedirects(HttpClient.Redirect.NEVER)
+                        .proxy(config.getProxySelector())
+                        .build();
+            }
+        }
+        return httpClientInstance;
+    }
 
     @Override
     public List<Feed> getFeeds(FeedsArg arg) throws IOException, InterruptedException {
@@ -43,7 +53,7 @@ public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
                                              .uri(toURI(BASE_API_V1_URL + "/recent/feeds?" + queryParams))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), FeedsResponse.class).getFeeds();
     }
 
@@ -55,7 +65,7 @@ public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
                                              .uri(toURI(BASE_API_V1_URL + "/recent/newfeeds?" + queryParams))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), NewFeedsResponse.class).getFeeds();
     }
 
@@ -65,7 +75,7 @@ public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
                                              .uri(toURI(BASE_API_V1_URL + "/recent/soundbites?max=" + max))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), SoundBiteResponse.class).getSoundBites();
     }
 
@@ -77,7 +87,7 @@ public class Podcast4jRecentServiceImpl implements Podcast4jRecentService {
                                              .uri(toURI(BASE_API_V1_URL + "/recent/episodes?" + queryParams))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), EpisodesResponse.class).getEpisodes();
     }
 }

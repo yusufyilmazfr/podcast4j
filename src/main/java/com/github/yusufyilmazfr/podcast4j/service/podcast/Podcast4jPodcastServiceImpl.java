@@ -26,9 +26,19 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
     private final Config config;
     private final ObjectMapper objectMapper;
 
-    private final HttpClient httpClient = HttpClient.newBuilder()
-                                                    .followRedirects(HttpClient.Redirect.NEVER)
-                                                    .build();
+    private HttpClient httpClientInstance;
+
+    public HttpClient getHttpClient() {
+        if (httpClientInstance == null) {
+            synchronized (HttpClient.class) {
+                httpClientInstance = HttpClient.newBuilder()
+                        .followRedirects(HttpClient.Redirect.NEVER)
+                        .proxy(config.getProxySelector())
+                        .build();
+            }
+        }
+        return httpClientInstance;
+    }
 
 
     @Override
@@ -37,7 +47,7 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
                                              .uri(toURI(BASE_API_V1_URL + "/podcasts/byfeedid?id=" + feedId))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), PodcastResponse.class).getPodcast();
     }
 
@@ -47,7 +57,7 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
                                              .uri(toURI(BASE_API_V1_URL + "/podcasts/byfeedurl?url=" + feedURL))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), PodcastResponse.class).getPodcast();
     }
 
@@ -57,7 +67,7 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
                                               .uri(toURI(BASE_API_V1_URL + "/podcasts/byguid?guid=" + GUID))
                                               .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), PodcastResponse.class).getPodcast();
     }
 
@@ -67,7 +77,7 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
                                              .uri(toURI(BASE_API_V1_URL + "/podcasts/byitunesid?id=" + iTunesId))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), PodcastResponse.class).getPodcast();
     }
 
@@ -77,7 +87,7 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
                                              .uri(toURI(BASE_API_V1_URL + "/podcasts/bytag?podcast-value"))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), PodcastsByTagResponse.class).getPodcasts();
     }
 
@@ -87,7 +97,7 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
                                              .uri(toURI(BASE_API_V1_URL + "/podcasts/bymedium?medium=" + mediumType.getName()))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), PodcastsByMediumResponse.class).getPodcasts();
     }
 
@@ -99,7 +109,7 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
                                              .uri(toURI(BASE_API_V1_URL + "/podcasts/trending?" + queryParams))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), TrendPodcastsResponse.class).getTrendPodcasts();
     }
 
@@ -109,7 +119,7 @@ public class Podcast4jPodcastServiceImpl implements Podcast4jPodcastService {
                                              .uri(toURI(BASE_API_V1_URL + "/podcasts/dead"))
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), DeadPodcastsResponse.class).getDeadPodcasts();
     }
 }
