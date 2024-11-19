@@ -34,6 +34,7 @@ public class Episode {
     private URL feedImage;
     private String feedImageUrlHash;
     private Integer feedId;
+    private String podcastGuid;
     private String feedUrl;
     private String feedAuthor;
     private String feedTitle;
