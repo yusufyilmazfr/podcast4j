@@ -1,5 +1,6 @@
 package com.github.yusufyilmazfr.podcast4j.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -14,6 +15,7 @@ public class Config implements Cloneable {
     private String secret;
     private String userAgent;
     private int timeOut;
+    private ObjectMapper objectMapper;
     private ProxySelector proxySelector;
 
     public int getTimeOut() {
@@ -34,6 +36,7 @@ public class Config implements Cloneable {
                      .secret(secret)
                      .userAgent(userAgent)
                      .timeOut(timeOut)
+                     .objectMapper(objectMapper)
                      .proxySelector(proxySelector)
                      .build();
     }
