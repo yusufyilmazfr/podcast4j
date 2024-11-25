@@ -29,13 +29,15 @@ public class Podcast4jEpisodeServiceImpl implements Podcast4jEpisodeService {
 
     private HttpClient httpClientInstance;
 
-    public HttpClient getHttpClient() {
+    private HttpClient getHttpClient() {
         if (httpClientInstance == null) {
             synchronized (HttpClient.class) {
-                httpClientInstance = HttpClient.newBuilder()
-                        .followRedirects(HttpClient.Redirect.NEVER)
-                        .proxy(config.getProxySelector())
-                        .build();
+                HttpClient.Builder builder = HttpClient.newBuilder()
+                        .followRedirects(HttpClient.Redirect.NEVER);
+                if (config.getProxySelector() != null) {
+                    builder.proxy(config.getProxySelector());
+                }
+                httpClientInstance = builder.build();
             }
         }
         return httpClientInstance;
