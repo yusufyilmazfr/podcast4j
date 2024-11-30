@@ -21,9 +21,21 @@ public class Podcast4jValueServiceImpl implements Podcast4jValueService {
     private final Config config;
     private final ObjectMapper objectMapper;
 
-    private final HttpClient httpClient = HttpClient.newBuilder()
-                                                    .followRedirects(HttpClient.Redirect.NEVER)
-                                                    .build();
+    private HttpClient httpClientInstance;
+
+    private HttpClient getHttpClient() {
+        if (httpClientInstance == null) {
+            synchronized (HttpClient.class) {
+                HttpClient.Builder builder = HttpClient.newBuilder()
+                        .followRedirects(HttpClient.Redirect.NEVER);
+                if (config.getProxySelector() != null) {
+                    builder.proxy(config.getProxySelector());
+                }
+                httpClientInstance = builder.build();
+            }
+        }
+        return httpClientInstance;
+    }
 
     @Override
     public Value getValueByFeedId(Integer feedId) throws IOException, InterruptedException {
@@ -33,7 +45,7 @@ public class Podcast4jValueServiceImpl implements Podcast4jValueService {
                                              .uri(uri)
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), ValueResponse.class).getValue();
     }
 
@@ -45,7 +57,7 @@ public class Podcast4jValueServiceImpl implements Podcast4jValueService {
                                              .uri(uri)
                                              .build();
 
-        HttpResponse<String> content = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> content = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(content.body(), ValueResponse.class).getValue();
     }
 }

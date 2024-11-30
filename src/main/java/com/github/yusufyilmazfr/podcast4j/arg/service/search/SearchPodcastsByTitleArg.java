@@ -25,6 +25,12 @@ public class SearchPodcastsByTitleArg {
      */
     private String val;
     /**
+     *Maximum number of results to return.
+     *
+     * Examples: 10
+     */
+    private Integer max;
+    /**
      * If present, only non-explicit feeds will be returned. Meaning, feeds where the itunes:explicit flag is set to false.
      * Parameter shall not have a value
      */
@@ -44,6 +50,7 @@ public class SearchPodcastsByTitleArg {
         Map<String, Object> map = new HashMap<>();
         map.put("q", q);
         map.put("val", val);
+        map.put("max", max);
         map.put("clean", clean);
         map.put("fulltext", fulltext);
         map.put("similar", similar);

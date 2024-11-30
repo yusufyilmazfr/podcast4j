@@ -2,6 +2,7 @@ package com.github.yusufyilmazfr.podcast4j.factory;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.github.yusufyilmazfr.podcast4j.config.Config;
 import com.github.yusufyilmazfr.podcast4j.service.applereplacement.Podcast4jAppleReplacementService;
 import com.github.yusufyilmazfr.podcast4j.service.applereplacement.Podcast4jAppleReplacementServiceImpl;
@@ -35,13 +36,17 @@ public class Podcast4jServiceFactory {
     private static Podcast4jAppleReplacementService appleReplacementService;
     private static Podcast4jSearchService searchService;
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
-
     private Podcast4jServiceFactory() {
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     public static Podcast4jServiceFactory with(Config config) {
+        ObjectMapper objectMapper = null;
+        if (config.getObjectMapper() != null) {
+            objectMapper = config.getObjectMapper();
+        } else {
+            objectMapper = new ObjectMapper();
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        }
         categoryService = new Podcast4jCategoryServiceImpl(config, objectMapper);
         statsService = new Podcast4jStatsServiceImpl(config, objectMapper);
         recentService = new Podcast4jRecentServiceImpl(config, objectMapper);

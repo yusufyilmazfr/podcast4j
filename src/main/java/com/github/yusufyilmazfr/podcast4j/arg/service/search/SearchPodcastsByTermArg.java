@@ -25,6 +25,12 @@ public class SearchPodcastsByTermArg {
      */
     private String val;
     /**
+     *Maximum number of results to return.
+     *
+     * Examples: 10
+     */
+    private Integer max;
+    /**
      * Only returns feeds with an itunesId.
      */
     private Boolean aponly;
@@ -33,6 +39,10 @@ public class SearchPodcastsByTermArg {
      * Parameter shall not have a value
      */
     private Boolean clean;
+    /**
+     * If present, include similar matches in search response. For search/byterm, prioritizes title matches.
+     */
+    private Boolean similar;
     /**
      * If present, return the full text value of any text fields (ex: `description`).
      * If not provided, field value is truncated to 100 words.
@@ -44,8 +54,10 @@ public class SearchPodcastsByTermArg {
         Map<String, Object> map = new HashMap<>();
         map.put("q", q);
         map.put("val", val);
+        map.put("max", max);
         map.put("aponly", aponly);
         map.put("clean", clean);
+        map.put("similar", similar);
         map.put("fulltext", fulltext);
 
         return map;

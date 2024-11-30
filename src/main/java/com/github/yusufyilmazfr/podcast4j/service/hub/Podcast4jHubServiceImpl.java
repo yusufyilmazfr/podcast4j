@@ -16,9 +16,21 @@ import static com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil.toURI;
 public class Podcast4jHubServiceImpl implements Podcast4jHubService {
     private final Config config;
 
-    private final HttpClient httpClient = HttpClient.newBuilder()
-                                                    .followRedirects(HttpClient.Redirect.NEVER)
-                                                    .build();
+    private HttpClient httpClientInstance;
+
+    private HttpClient getHttpClient() {
+        if (httpClientInstance == null) {
+            synchronized (HttpClient.class) {
+                HttpClient.Builder builder = HttpClient.newBuilder()
+                        .followRedirects(HttpClient.Redirect.NEVER);
+                if (config.getProxySelector() != null) {
+                    builder.proxy(config.getProxySelector());
+                }
+                httpClientInstance = builder.build();
+            }
+        }
+        return httpClientInstance;
+    }
 
     @Override
     public boolean notifyByFeedId(Integer feedId) throws IOException, InterruptedException {
@@ -26,7 +38,7 @@ public class Podcast4jHubServiceImpl implements Podcast4jHubService {
                                              .uri(toURI(BASE_API_V1_URL + "/hub/pubnotify?id=" + feedId))
                                              .build();
 
-        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return response.statusCode() == 200;
     }
 
@@ -36,7 +48,7 @@ public class Podcast4jHubServiceImpl implements Podcast4jHubService {
                                              .uri(toURI(BASE_API_V1_URL + "/hub/pubnotify?url=" + feedURL))
                                              .build();
 
-        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return response.statusCode() == 200;
     }
 }
